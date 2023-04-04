@@ -14,6 +14,8 @@ import { PlanetsComponent } from './pages/planets/planets.component';
 import { AppRoutingModule } from './app-routing.module';
 import { StoreModule } from '@ngrx/store';
 import { swReducer } from './store/reducers/sw.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { SwEffects } from './store/effects/sw.effects';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { swReducer } from './store/reducers/sw.reducer';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    StoreModule.forRoot({sw: swReducer})
+    StoreModule.forRoot({sw: swReducer}),
+    EffectsModule.forRoot([SwEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent]

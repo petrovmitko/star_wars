@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonService } from 'src/app/services/common.service';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { updateLoading } from 'src/app/store/actions/sw.action';
+import { updateLoading, getCharactersData } from 'src/app/store/actions/sw.action';
 import { IAppStore } from 'src/app/store/sw.store';
 
 @Component({
@@ -22,10 +22,14 @@ export class CharactersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getCharactersData('1');
+    // this.getCharactersData('1');
     this.store.subscribe(x => console.log(x));
 
-    this.store.dispatch(updateLoading(true))
+    this.store.dispatch(updateLoading(true));
+    this.store.dispatch(getCharactersData(`people?page=${this.page}`));
+
+    // next => create selector and get data from store and show it !!!
+    // create loader component
   }
 
   getCharactersData(page: string): void {
