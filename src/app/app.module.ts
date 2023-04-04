@@ -1,0 +1,40 @@
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { AppComponent } from './app.component';
+import { HeaderComponent } from './components/header/header.component';
+import { CardMainComponent } from './components/card-main/card-main.component';
+import { HomeComponent } from './pages/home/home.component';
+import { CharactersComponent } from './pages/characters/characters.component';
+import { FilmsComponent } from './pages/films/films.component';
+import { SpeciesComponent } from './pages/species/species.component';
+import { StarshipsComponent } from './pages/starships/starships.component';
+import { VehiclesComponent } from './pages/vehicles/vehicles.component';
+import { PlanetsComponent } from './pages/planets/planets.component';
+import { AppRoutingModule } from './app-routing.module';
+import { StoreModule } from '@ngrx/store';
+import { swReducer } from './store/reducers/sw.reducer';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    CardMainComponent,
+    HomeComponent,
+    CharactersComponent,
+    FilmsComponent,
+    SpeciesComponent,
+    StarshipsComponent,
+    VehiclesComponent,
+    PlanetsComponent,
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    StoreModule.forRoot({sw: swReducer})
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }

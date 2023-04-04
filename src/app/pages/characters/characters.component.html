@@ -1,0 +1,17 @@
+<div class="characters-wrapper">
+    <app-header></app-header>
+    <div class="content">
+        <div class="card" *ngFor="let character of data">
+            <div class="img">
+                <img src="assets/characters/{{character.img}}.jpg" alt="">
+            </div>
+            <div class="info">
+                <h3>{{character.name}}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="btw-box">
+        <button (click)="goToPrevPage()">Prev</button>
+        <button (click)="goToNextPage()">Next</button>
+    </div>
+</div>

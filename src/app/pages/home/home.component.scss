@@ -1,0 +1,13 @@
+.app-wrapper {
+    background: black;
+    width: 100vw;
+    height: 100vh;
+    .app-content {
+        padding-top: 50px;
+        display: flex;
+        justify-content: space-around;
+        width: 1290px;
+        margin: 0 auto;
+        flex-wrap: wrap;
+    }
+}

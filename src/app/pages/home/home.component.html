@@ -1,0 +1,10 @@
+<div class="app-wrapper">
+    <app-header></app-header>
+    <div class="app-content">
+      <app-card-main *ngFor="let card of data" 
+      [title]="card.title"
+      [url]="card.url"
+      [img]="card.img"
+      (click)="goTo(card.url)"></app-card-main>
+    </div>
+</div>
