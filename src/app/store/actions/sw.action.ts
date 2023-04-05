@@ -1,5 +1,5 @@
 import { createAction } from '@ngrx/store';
-import { ICharactersData } from '../sw.store';
+import { ICharactersData } from 'src/app/models/characters.interfaces';
 
 export enum SwTypes {
     UPDATE_LOADING = '[LOADING] Update Loading',

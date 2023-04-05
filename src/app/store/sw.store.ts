@@ -1,30 +1,32 @@
+import { Store, createFeatureSelector, createSelector } from "@ngrx/store";
+import { ICharacters, ICharactersData } from "../models/characters.interfaces";
+import { take } from "rxjs";
+
 export interface IAppStore {
   loading: boolean;
   characters: ICharactersData;
 }
 
-export interface ICharactersData {
-  count: number;
-  next: string;
-  previous: string;
-  results: ICharacters[];
-}
+export const initialState: IAppStore = { 
+  loading: false,
+  characters: {
+    count: 0,
+    next: '',
+    previous: '',
+    results: [],
+  }
+};
 
-export interface ICharacters {
-  birth_year: string;
-  created: Date;
-  edited: Date;
-  eye_color: string;
-  gender: string;
-  hair_color: string;
-  height: string;
-  homeworld: string;
-  mass: string;
-  name: string;
-  skin_color: string;
-  films: string[];
-  starships: string[];
-  species: string[];
-  url: string;
-  vehicles: string[];
-}
+export const getState = (store: Store<IAppStore>): IAppStore => { 
+  let state$: IAppStore = initialState;
+
+  store 
+  .select((state) => state) 
+  .pipe(take(1)) 
+  .subscribe((o) => (state$ = o)); 
+  return state$; 
+};
+
+export const swState = createFeatureSelector<IAppStore>('sw'); 
+export const selectCharacters = createSelector(swState, (state: IAppStore) => state.characters.results); 
+

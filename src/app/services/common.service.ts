@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ICharactersData } from '../store/sw.store';
+import { ICharactersData } from '../models/characters.interfaces';
 
 @Injectable({
   providedIn: 'root'

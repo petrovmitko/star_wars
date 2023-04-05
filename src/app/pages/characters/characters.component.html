@@ -1,9 +1,9 @@
 <div class="characters-wrapper">
     <app-header></app-header>
     <div class="content">
-        <div class="card" *ngFor="let character of data">
+        <div class="card" *ngFor="let character of results$ | async">
             <div class="img">
-                <img src="assets/characters/{{character.img}}.jpg" alt="">
+                <img src="assets/characters/{{getImg(character.url)}}.jpg" alt="">
             </div>
             <div class="info">
                 <h3>{{character.name}}</h3>
