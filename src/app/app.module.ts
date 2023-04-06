@@ -16,6 +16,7 @@ import { StoreModule } from '@ngrx/store';
 import { swReducer } from './store/reducers/sw.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { SwEffects } from './store/effects/sw.effects';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { SwEffects } from './store/effects/sw.effects';
     StarshipsComponent,
     VehiclesComponent,
     PlanetsComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,

@@ -29,4 +29,4 @@ export const getState = (store: Store<IAppStore>): IAppStore => {
 
 export const swState = createFeatureSelector<IAppStore>('sw'); 
 export const selectCharacters = createSelector(swState, (state: IAppStore) => state.characters.results); 
-
+export const getLoader = createSelector(swState, (state: IAppStore) => state.loading); 

@@ -3,7 +3,7 @@ import { CommonService } from 'src/app/services/common.service';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { updateLoading, getCharactersData } from 'src/app/store/actions/sw.action';
-import { IAppStore, selectCharacters } from 'src/app/store/sw.store';
+import { IAppStore, selectCharacters, getLoader } from 'src/app/store/sw.store';
 import { ICharacters } from 'src/app/models/characters.interfaces';
 
 @Component({
@@ -17,6 +17,7 @@ export class CharactersComponent implements OnInit {
   
   sw$: Observable<IAppStore>;
   results$: Observable<ICharacters[]> | undefined;
+  loader$ : Observable<boolean> | undefined;
   constructor(private commonService: CommonService, 
     private store: Store<{sw: IAppStore}>) { 
     this.sw$ = store.select('sw');
@@ -27,8 +28,7 @@ export class CharactersComponent implements OnInit {
     this.store.dispatch(getCharactersData(`people?page=${this.page}`));
 
     this.results$ = this.store.select(selectCharacters);
-
-    // create loader component
+    this.loader$ = this.store.select(getLoader);
   }
 
   getImg(x: string): string {
@@ -37,11 +37,13 @@ export class CharactersComponent implements OnInit {
   }
 
   goToNextPage(): void {
+    this.store.dispatch(updateLoading(true));
     this.page++;
     this.store.dispatch(getCharactersData(`people?page=${this.page}`));
   }
   
   goToPrevPage(): void {
+    this.store.dispatch(updateLoading(true));
     this.page--;
     this.store.dispatch(getCharactersData(`people?page=${this.page}`));
   }

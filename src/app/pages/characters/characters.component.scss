@@ -1,34 +1,40 @@
 .characters-wrapper {
     background: black;
     .content {
-        width: 100vw;
+        max-width: 100vw;
+        min-height: 90vh;
         display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        padding: 40px 100px;
-        .card {
-            width: 16%;
-            margin: 0 2%;
-            border: 1px solid;
-            border-radius: 8px;
-            overflow: hidden;
-            margin-bottom: 40px;
-            box-shadow: gray 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, white 0px -2px 6px 0px inset;
-            .img img{
-                width: 100%;
-                height: 300px;
-                object-fit: cover;
-                object-position: center top;
-            }
-            .info {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                height: 40px;
-                background: white;
-                h3 {
-                    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-                    font-weight: 100;
+        justify-content: center;
+        align-items: center;
+        .cards-box {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding: 40px 100px;
+            .card {
+                width: 16%;
+                margin: 0 2%;
+                border: 1px solid;
+                border-radius: 8px;
+                overflow: hidden;
+                margin-bottom: 40px;
+                box-shadow: gray 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, white 0px -2px 6px 0px inset;
+                .img img{
+                    width: 100%;
+                    height: 300px;
+                    object-fit: cover;
+                    object-position: center top;
+                }
+                .info {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    height: 40px;
+                    background: white;
+                    h3 {
+                        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                        font-weight: 100;
+                    }
                 }
             }
         }
