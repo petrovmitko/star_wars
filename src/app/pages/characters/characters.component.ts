@@ -18,6 +18,9 @@ export class CharactersComponent implements OnInit {
   sw$: Observable<IAppStore>;
   results$: Observable<ICharacters[]> | undefined;
   loader$ : Observable<boolean> | undefined;
+
+  pageArray = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
   constructor(private commonService: CommonService, 
     private store: Store<{sw: IAppStore}>) { 
     this.sw$ = store.select('sw');
@@ -29,6 +32,10 @@ export class CharactersComponent implements OnInit {
 
     this.results$ = this.store.select(selectCharacters);
     this.loader$ = this.store.select(getLoader);
+    
+    // this.results$.subscribe(x => {
+    //   console.log(x)
+    // })
   }
 
   getImg(x: string): string {
@@ -45,6 +52,12 @@ export class CharactersComponent implements OnInit {
   goToPrevPage(): void {
     this.store.dispatch(updateLoading(true));
     this.page--;
+    this.store.dispatch(getCharactersData(`people?page=${this.page}`));
+  }
+
+  goToPage(page: number): void {
+    this.store.dispatch(updateLoading(true));
+    this.page = page;
     this.store.dispatch(getCharactersData(`people?page=${this.page}`));
   }
 }

@@ -1,6 +1,13 @@
 <div class="characters-wrapper">
     <app-header></app-header>
     <app-loader *ngIf="loader$ | async"></app-loader>
+    <div class="btw-box">
+        <button class="direction-btn" (click)="goToPrevPage()">Prev</button>
+        <ul class="paginator">
+            <li *ngFor="let i of pageArray" [ngClass]="i === page ? 'selected' : ''" (click)="goToPage(i)">{{i}}</li>
+        </ul>
+        <button class="direction-btn" (click)="goToNextPage()">Next</button>
+    </div>
     <div class="content" *ngIf="!(loader$ | async)">
         <div class="cards-box">
             <div class="card" *ngFor="let character of results$ | async">
@@ -12,9 +19,5 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="btw-box">
-        <button (click)="goToPrevPage()">Prev</button>
-        <button (click)="goToNextPage()">Next</button>
     </div>
 </div>
