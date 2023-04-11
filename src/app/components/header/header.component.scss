@@ -1,7 +1,36 @@
 .header {
     height: 150px;
-    text-align: center;
-    img {
-        height: 150px;
+    display: flex;
+    justify-content: center;
+    .logo {
+        width: 200px;
+        position: relative;
+        .tooltiptext {
+            display: none;
+        }
+        img {
+            height: 150px;
+        }
+        &:hover {
+            cursor: pointer;
+            .tooltiptext {
+                width: 140px;
+                text-align: center;
+                font-family: 'Karla';
+                color: rgb(198, 212, 239);
+                display: block;
+                position: absolute;
+                bottom: 20px;
+                left: 60px;
+                position: relative;
+                text-shadow: 
+                0 0 5px #0bf4f3,
+                0 0 10px #0bf4f3,
+                0 0 20px #0bf4f3,
+                0 0 40px #0bf4f3,
+                0 0 80px #0bf4f3;
+            }
+        }
+
     }
 }
