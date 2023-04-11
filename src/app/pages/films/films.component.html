@@ -1,16 +1,21 @@
 <div class="characters-wrapper">
-    <app-header></app-header>
-    <app-loader *ngIf="loader$ | async"></app-loader>
-    <div class="content" *ngIf="!(loader$ | async)">
-        <div class="cards-box">
-            <div class="card" *ngFor="let film of results$ | async">
-                <div class="img">
-                    <img src="assets/films/{{getImg(film.url)}}.jpg" alt="">
-                </div>
-                <div class="info">
-                    <h3>{{film.title}}</h3>
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+    <div class="clouds">
+        <app-header></app-header>
+        <app-loader *ngIf="loader$ | async"></app-loader>
+        <div class="content" *ngIf="!(loader$ | async)">
+            <div class="cards-box">
+                <div class="card" *ngFor="let film of results$ | async">
+                    <div class="img">
+                        <img src="assets/films/{{getImg(film.url)}}.jpg" alt="">
+                    </div>
+                    <div class="info">
+                        <h3>{{film.title}}</h3>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+

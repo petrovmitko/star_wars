@@ -1,27 +1,32 @@
+
+
 .header {
     height: 150px;
     display: flex;
     justify-content: center;
     .logo {
-        width: 200px;
+        width: 240px;
+        padding-top: 20px;
         position: relative;
         .tooltiptext {
             display: none;
         }
         img {
-            height: 150px;
+            width: 240px;
         }
         &:hover {
             cursor: pointer;
             .tooltiptext {
                 width: 140px;
                 text-align: center;
-                font-family: 'Karla';
+                font-family: 'Lato', sans-serif;
+                font-size: 13px;
+                font-weight: bold;
                 color: rgb(198, 212, 239);
                 display: block;
                 position: absolute;
-                bottom: 20px;
-                left: 60px;
+                bottom: 0px;
+                left: 50px;
                 position: relative;
                 text-shadow: 
                 0 0 5px #0bf4f3,

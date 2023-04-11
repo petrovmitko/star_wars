@@ -1,5 +1,43 @@
 .characters-wrapper {
-    background: black;
+    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+    .stars, .twinkling, .clouds {
+      position:absolute;
+      display:block;
+      top:0; bottom:0;
+      left:0; right:0;
+      width:100vw; height:100vh;
+      z-index: -1;
+    }
+    
+    .stars {
+      z-index: 0;
+      background: #000 url('https://i.imgur.com/YKY28eT.png') repeat top center;
+    }
+    
+    .twinkling{
+      z-index: 1;
+      background:transparent url('https://i.imgur.com/XYMF4ca.png') repeat top center;
+      animation: move-twink-back 200s linear infinite;
+    }
+    
+    .clouds{
+      z-index: 2;
+        background:transparent url('https://i.imgur.com/mHbScrQ.png') repeat top center;
+      animation: move-clouds-back 200s linear infinite;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+    
+    @keyframes move-twink-back {
+      from {background-position:0 0;}
+      to {background-position:-10000px 5000px;}
+    }
+    
+    @keyframes move-clouds-back {
+      from {background-position:0 0;}
+      to {background-position:10000px 0;}
+    }
+
     .btw-box {
         display: flex;
         justify-content: space-around;
@@ -120,7 +158,7 @@
                 overflow: hidden;
                 margin-bottom: 40px;
                 min-width: 200px;
-                box-shadow: gray 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, white 0px -2px 6px 0px inset;
+                // box-shadow: gray 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, white 0px -2px 6px 0px inset;
                 .img img{
                     width: 100%;
                     height: 300px;

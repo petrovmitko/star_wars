@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ICharactersData } from '../models/characters.interfaces';
 import { IFilmsData } from '../models/films.interfaces';
+import { IPlanetsData } from '../models/planets.interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +19,9 @@ export class CommonService {
 
   getFilms(uri: string): Observable<IFilmsData>{
     return this.http.get<IFilmsData>(this.swapiUrl + uri);
+  }
+
+  getPlanets(uri: string): Observable<IPlanetsData>{
+    return this.http.get<IPlanetsData>(this.swapiUrl + uri);
   }
 }
