@@ -21,8 +21,7 @@ export class CharactersComponent implements OnInit {
 
   pageArray = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-  constructor(private commonService: CommonService, 
-    private store: Store<{sw: IAppStore}>) { 
+  constructor( private store: Store<{sw: IAppStore}> ) { 
     this.sw$ = store.select('sw');
   }
 

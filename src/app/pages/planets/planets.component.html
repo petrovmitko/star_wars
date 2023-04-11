@@ -1,1 +1,32 @@
-<p>planets works!</p>
+<div class="characters-wrapper">
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+    <div class="clouds">
+        <div class="content-wrap">
+            <app-header></app-header>
+            <app-loader *ngIf="loader$ | async"></app-loader>
+            <div class="btw-box">
+                <button class="custom-btn neon" (click)="goToPrevPage()"><span>Go</span><span>Previous</span></button>
+                <ul class="paginator">
+                    <li *ngFor="let i of pageArray" [ngClass]="i === page ? 'selected' : ''" (click)="goToPage(i)">{{i}}</li>
+                </ul>
+                <button class="custom-btn neon" (click)="goToNextPage()"><span>Go</span><span>Next</span></button>
+            </div>
+            <div class="content" *ngIf="!(loader$ | async)">
+                <div class="cards-box">
+                    <div class="card" *ngFor="let planet of results$ | async">
+                        <div class="img">
+                            <img class="planet-card-img" *ngIf="planet.name !== 'unknown'" src="assets/planets/{{getImg(planet.url)}}.jpg" alt="">
+                            <img class="planet-card-img" *ngIf="planet.name === 'unknown'" src="assets/unknown.jpg" alt="">
+                        </div>
+                        <div class="info">
+                            <h3>{{planet.name}}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
