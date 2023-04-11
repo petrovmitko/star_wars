@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { map, exhaustMap, catchError, mergeMap, switchMap, tap } from 'rxjs/operators';
+import { map, exhaustMap, catchError, mergeMap, switchMap } from 'rxjs/operators';
 import { CommonService } from 'src/app/services/common.service';
-import { SwTypes } from 'src/app/store/actions/sw.action';
+import { SwTypes, updateFilmsData } from 'src/app/store/actions/sw.action';
 import { updateLoading, updateCharactersData } from 'src/app/store/actions/sw.action';
 import { IAppStore } from '../sw.store';
 @Injectable()
@@ -16,6 +16,23 @@ export class SwEffects {
         mergeMap((characters) => {
             return [
             updateCharactersData(characters),
+            updateLoading(false),
+            ];
+        }),
+        catchError((err) => {
+            return [updateLoading(false)]; 
+        }),
+      )),
+    )
+  );
+
+  getFilms$ = createEffect(() => this.actions$.pipe(
+    ofType(SwTypes.GET_FILMS),
+    switchMap(({uri}) => this.commonService.getFilms(uri)
+      .pipe(
+        mergeMap((films) => {
+            return [
+            updateFilmsData(films),
             updateLoading(false),
             ];
         }),
