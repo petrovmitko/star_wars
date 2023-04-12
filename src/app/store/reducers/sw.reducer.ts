@@ -1,5 +1,6 @@
 import { createReducer, on, State } from '@ngrx/store';
-import { updateCharactersData, updateLoading, updateFilmsData, updatePlanetsData } from '../actions/sw.action';
+import { updateCharactersData, updateLoading, updateFilmsData, 
+updatePlanetsData, updateSpeciesData } from '../actions/sw.action';
 import { initialState } from '../sw.store';
 
 
@@ -11,5 +12,6 @@ export const swReducer = createReducer(
   on(updateCharactersData, (state, { characters }) => ({...state, characters})),
   on(updateFilmsData, (state, { films }) => ({...state, films})),
   on(updatePlanetsData, (state, { planets }) => ({...state, planets})),
+  on(updateSpeciesData, (state, { species }) => ({...state, species})),
 );
 

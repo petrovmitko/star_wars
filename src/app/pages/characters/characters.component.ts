@@ -12,7 +12,6 @@ import { ICharacters } from 'src/app/models/characters.interfaces';
   styleUrls: ['./characters.component.scss']
 })
 export class CharactersComponent implements OnInit {
-  data: any;
   page = 1;
   
   sw$: Observable<IAppStore>;
@@ -31,10 +30,6 @@ export class CharactersComponent implements OnInit {
 
     this.results$ = this.store.select(selectCharacters);
     this.loader$ = this.store.select(getLoader);
-    
-    // this.results$.subscribe(x => {
-    //   console.log(x)
-    // })
   }
 
   getImg(x: string): string {

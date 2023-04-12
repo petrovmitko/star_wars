@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { map, exhaustMap, catchError, mergeMap, switchMap } from 'rxjs/operators';
 import { CommonService } from 'src/app/services/common.service';
-import { SwTypes, updateFilmsData, updatePlanetsData } from 'src/app/store/actions/sw.action';
+import { SwTypes, updateFilmsData, updatePlanetsData, updateSpeciesData } from 'src/app/store/actions/sw.action';
 import { updateLoading, updateCharactersData } from 'src/app/store/actions/sw.action';
 import { IAppStore } from '../sw.store';
 @Injectable()
@@ -50,6 +50,23 @@ export class SwEffects {
         mergeMap((planets) => {
             return [
             updatePlanetsData(planets),
+            updateLoading(false),
+            ];
+        }),
+        catchError((err) => {
+            return [updateLoading(false)]; 
+        }),
+      )),
+    )
+  );
+
+  getSpecies$ = createEffect(() => this.actions$.pipe(
+    ofType(SwTypes.GET_SPECIES),
+    switchMap(({uri}) => this.commonService.getSpecies(uri)
+      .pipe(
+        mergeMap((species) => {
+            return [
+            updateSpeciesData(species),
             updateLoading(false),
             ];
         }),
