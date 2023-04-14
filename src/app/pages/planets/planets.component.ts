@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IPlanets } from 'src/app/models/planets.interfaces';
+import { SwapiService } from 'src/app/services/swapi.service';
 import { getPlanetsData, updateLoading } from 'src/app/store/actions/sw.action';
 import { IAppStore, getLoader, selectPlanets } from 'src/app/store/sw.store';
 
@@ -19,7 +20,7 @@ export class PlanetsComponent implements OnInit {
   results$: Observable<IPlanets[]> | undefined;
   loader$ : Observable<boolean> | undefined;
 
-  constructor( private store: Store<{sw: IAppStore}> ) { 
+  constructor( private store: Store<{sw: IAppStore}>, private swapiService: SwapiService) { 
     this.sw$ = store.select('sw');
   }
 
@@ -29,15 +30,10 @@ export class PlanetsComponent implements OnInit {
 
     this.results$ = this.store.select(selectPlanets);
     this.loader$ = this.store.select(getLoader);
-
-    this.results$.subscribe(d => {
-      console.log(d);
-    });
   }
 
   getImg(x: string): string {
-    let strArr = x.split('/');
-    return strArr[strArr.length - 2];
+    return this.swapiService.getImg(x);
   }
 
   goToNextPage(): void {

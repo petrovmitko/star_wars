@@ -5,6 +5,8 @@ import { ICharactersData } from '../models/characters.interfaces';
 import { IFilmsData } from '../models/films.interfaces';
 import { IPlanetsData } from '../models/planets.interfaces';
 import { ISpeciesData } from '../models/species.interfaces';
+import { IStarshipsData } from '../models/starships.interfaces';
+import { IVehiclesData } from '../models/vehicles.interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +30,13 @@ export class CommonService {
 
   getSpecies(uri: string): Observable<ISpeciesData>{
     return this.http.get<ISpeciesData>(this.swapiUrl + uri);
+  }
+
+  getStarships(uri: string): Observable<IStarshipsData>{
+    return this.http.get<IStarshipsData>(this.swapiUrl + uri);
+  }
+
+  getVehicles(uri: string): Observable<IVehiclesData>{
+    return this.http.get<IVehiclesData>(this.swapiUrl + uri);
   }
 }

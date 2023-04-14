@@ -1,13 +1,15 @@
+@import '../../../variables.scss';
+
 .card-box {
     width: 400px;
     height: 250px;
     border-radius: 4px;
-    color: white;
+    color: $white;
     margin-bottom: 40px;
     position: relative;
     overflow: hidden;
     &:hover {
-        border: 2px solid white;
+        border: 2px solid $white;
         cursor: pointer;
     }
     img {

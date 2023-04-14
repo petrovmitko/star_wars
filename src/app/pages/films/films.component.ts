@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { updateLoading, getFilmsData } from 'src/app/store/actions/sw.action';
 import { IAppStore, selectFilms, getLoader } from 'src/app/store/sw.store';
 import { IFilms } from 'src/app/models/films.interfaces';
+import { SwapiService } from 'src/app/services/swapi.service';
 
 @Component({
   selector: 'app-films',
@@ -17,7 +18,7 @@ export class FilmsComponent implements OnInit {
   loader$ : Observable<boolean> | undefined;
 
 
-  constructor( private store: Store<{sw: IAppStore}> ) { 
+  constructor( private store: Store<{sw: IAppStore}>, private swapiService: SwapiService ) { 
     this.sw$ = store.select('sw');
   }
 
@@ -31,8 +32,7 @@ export class FilmsComponent implements OnInit {
   }
 
   getImg(x: string): string {
-    let strArr = x.split('/');
-    return strArr[strArr.length - 2];
+    return this.swapiService.getImg(x);
   }
 
 }

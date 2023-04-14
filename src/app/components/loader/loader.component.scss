@@ -1,7 +1,9 @@
+@import '../../../variables.scss';
+
 .loader-wrapper{
     width: 200px;
     height: auto;
-    background: black;
+    background: $black;
     position: absolute;
     top: 50%;
     left: 45%;
@@ -15,7 +17,7 @@
             bottom: 0;
             width: 6px;
             height: 30px;
-            background: #fff;
+            background: $white;
             transform-style: preserve-3d;
             transform: translateX(-50%) translateY(10px);
             border-radius: 0 0 99px 99px;

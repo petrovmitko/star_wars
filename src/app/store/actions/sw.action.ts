@@ -3,6 +3,8 @@ import { ICharactersData } from 'src/app/models/characters.interfaces';
 import { IFilmsData } from 'src/app/models/films.interfaces';
 import { IPlanetsData } from 'src/app/models/planets.interfaces';
 import { ISpeciesData } from 'src/app/models/species.interfaces';
+import { IStarshipsData } from 'src/app/models/starships.interfaces';
+import { IVehiclesData } from 'src/app/models/vehicles.interfaces';
 
 export enum SwTypes {
     UPDATE_LOADING = '[LOADING] Update Loading',
@@ -14,6 +16,11 @@ export enum SwTypes {
     UPDATE_PLANETS = '[PLANETS] Update Planets',
     GET_SPECIES = '[SPECIES] Get Species',
     UPDATE_SPECIES = '[SPECIES] Update Species',
+    GET_STARSHIPS = '[STARSHIPS] Get Starships',
+    UPDATE_STARSHIPS = '[STARSHIPS] Update Starships',
+    GET_VEHICLES = '[VEHICLES] Get Vehicles',
+    UPDATE_VEHICLES = '[VEHICLES] Update Vehicles'
+    
 }
 
 export const updateLoading = createAction(SwTypes.UPDATE_LOADING, (loading: boolean) => ({ loading }));
@@ -37,4 +44,14 @@ export const getSpeciesData = createAction(SwTypes.GET_SPECIES, (uri: string) =>
 
 export const updateSpeciesData = createAction(SwTypes.UPDATE_SPECIES, 
 (species: ISpeciesData) => ({ species }));
+
+export const getStarshipsData = createAction(SwTypes.GET_STARSHIPS, (uri: string) => ({ uri }));
+
+export const updateStarshipsData = createAction(SwTypes.UPDATE_STARSHIPS, 
+(starships: IStarshipsData) => ({ starships }));
+
+export const getVehiclesData = createAction(SwTypes.GET_VEHICLES, (uri: string) => ({ uri }));
+
+export const updateVehiclesData = createAction(SwTypes.UPDATE_VEHICLES, 
+(vehicles: IVehiclesData) => ({ vehicles }));
 

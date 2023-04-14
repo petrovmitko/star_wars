@@ -1,4 +1,4 @@
-
+@import '../../../variables.scss';
 
 .header {
     height: 150px;
@@ -29,11 +29,11 @@
                 left: 50px;
                 position: relative;
                 text-shadow: 
-                0 0 5px #0bf4f3,
-                0 0 10px #0bf4f3,
-                0 0 20px #0bf4f3,
-                0 0 40px #0bf4f3,
-                0 0 80px #0bf4f3;
+                0 0 5px $turquoise,
+                0 0 10px $turquoise,
+                0 0 20px $turquoise,
+                0 0 40px $turquoise,
+                0 0 80px $turquoise;
             }
         }
 

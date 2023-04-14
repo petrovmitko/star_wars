@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { map, exhaustMap, catchError, mergeMap, switchMap } from 'rxjs/operators';
+import { catchError, mergeMap, switchMap } from 'rxjs/operators';
 import { CommonService } from 'src/app/services/common.service';
-import { SwTypes, updateFilmsData, updatePlanetsData, updateSpeciesData } from 'src/app/store/actions/sw.action';
+import { SwTypes, updateFilmsData, updatePlanetsData, updateSpeciesData, updateStarshipsData, updateVehiclesData } from 'src/app/store/actions/sw.action';
 import { updateLoading, updateCharactersData } from 'src/app/store/actions/sw.action';
 import { IAppStore } from '../sw.store';
 @Injectable()
@@ -77,6 +77,40 @@ export class SwEffects {
     )
   );
  
+  getStarships$ = createEffect(() => this.actions$.pipe(
+    ofType(SwTypes.GET_STARSHIPS),
+    switchMap(({uri}) => this.commonService.getStarships(uri)
+      .pipe(
+        mergeMap((starships) => {
+            return [
+            updateStarshipsData(starships),
+            updateLoading(false),
+            ];
+        }),
+        catchError((err) => {
+            return [updateLoading(false)]; 
+        }),
+      )),
+    )
+  );
+
+  getVehicles$ = createEffect(() => this.actions$.pipe(
+    ofType(SwTypes.GET_VEHICLES),
+    switchMap(({uri}) => this.commonService.getVehicles(uri)
+      .pipe(
+        mergeMap((vehicles) => {
+            return [
+            updateVehiclesData(vehicles),
+            updateLoading(false),
+            ];
+        }),
+        catchError((err) => {
+            return [updateLoading(false)]; 
+        }),
+      )),
+    )
+  );
+
   constructor(
     private actions$: Actions,
     private commonService: CommonService,

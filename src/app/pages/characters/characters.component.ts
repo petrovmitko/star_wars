@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { updateLoading, getCharactersData } from 'src/app/store/actions/sw.action';
 import { IAppStore, selectCharacters, getLoader } from 'src/app/store/sw.store';
 import { ICharacters } from 'src/app/models/characters.interfaces';
+import { SwapiService } from 'src/app/services/swapi.service';
 
 @Component({
   selector: 'app-characters',
@@ -20,7 +21,7 @@ export class CharactersComponent implements OnInit {
 
   pageArray = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-  constructor( private store: Store<{sw: IAppStore}> ) { 
+  constructor( private store: Store<{sw: IAppStore}>, private swapiService: SwapiService ) { 
     this.sw$ = store.select('sw');
   }
 
@@ -33,8 +34,7 @@ export class CharactersComponent implements OnInit {
   }
 
   getImg(x: string): string {
-    let strArr = x.split('/');
-    return strArr[strArr.length - 2];
+    return this.swapiService.getImg(x);
   }
 
   goToNextPage(): void {

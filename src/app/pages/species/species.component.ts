@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { ISpecies } from 'src/app/models/species.interfaces';
+import { SwapiService } from 'src/app/services/swapi.service';
 import { getSpeciesData, updateLoading } from 'src/app/store/actions/sw.action';
 import { IAppStore, getLoader, selectSpecies } from 'src/app/store/sw.store';
 
@@ -19,7 +20,7 @@ export class SpeciesComponent implements OnInit {
 
   pageArray = [1, 2, 3, 4];
 
-  constructor( private store: Store<{sw: IAppStore}> ) { 
+  constructor( private store: Store<{sw: IAppStore}>, private swapiService: SwapiService) { 
     this.sw$ = store.select('sw');
   }
 
@@ -36,8 +37,7 @@ export class SpeciesComponent implements OnInit {
   }
 
   getImg(x: string): string {
-    let strArr = x.split('/');
-    return strArr[strArr.length - 2];
+    return this.swapiService.getImg(x);
   }
 
   goToNextPage(): void {

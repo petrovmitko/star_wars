@@ -1,3 +1,5 @@
+@import '../../../variables.scss';
+
 .characters-wrapper {
     background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
     .stars, .twinkling, .clouds {
@@ -11,7 +13,7 @@
     
     .stars {
       z-index: 0;
-      background: #000 url('https://i.imgur.com/YKY28eT.png') repeat top center;
+      background: $black url('https://i.imgur.com/YKY28eT.png') repeat top center;
     }
     
     .twinkling{
@@ -50,25 +52,25 @@
             li {
                 width: 40px;
                 height: 40px;
-                background: black;
-                box-shadow: 0 0 5px #0bf4f3, 0 0 7px #0bf4f3 inset;
-                color: #0bf4f3;
+                background: $black;
+                box-shadow: 0 0 5px $turquoise, 0 0 7px $turquoise inset;
+                color: $turquoise;
                 border-radius: 50%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 font-family: 'Karla';
                 cursor: pointer;
-                border: 1px solid #0bf4f3;
+                border: 1px solid $turquoise;
             }
             .selected {
-                background: #0bf4f3;
-                color: black;
+                background: $turquoise;
+                color: $black;
                 font-weight: bold;
             }
         }
         .custom-btn {
-            color: #fff;
+            color: $white;
             width: 130px;
             height: 40px;
             padding: 10px 25px;
@@ -81,7 +83,7 @@
             display: inline-block;
           }
           .neon{
-            color: #0bf4f3;
+            color: $turquoise;
             position: relative;
             right: 20px;
             bottom: 20px;
@@ -97,8 +99,8 @@
             position: absolute;
             width: 130px;
             height: 40px;
-            border: 1px solid #0bf4f3;
-            box-shadow: 0 0 5px #0bf4f3, 0 0 5px #0bf4f3 inset;
+            border: 1px solid $turquoise;
+            box-shadow: 0 0 5px $turquoise, 0 0 5px $turquoise inset;
             margin:0;
             text-align: center;
             -webkit-box-sizing: border-box;
@@ -108,7 +110,7 @@
             transition: all .3s;
           }
           .neon span:nth-child(1) {
-            box-shadow: 0 0 5px #0bf4f3, 0 0 5px #0bf4f3 inset;
+            box-shadow: 0 0 5px $turquoise, 0 0 5px $turquoise inset;
             -webkit-transform: rotateX(90deg);
             -moz-transform: rotateX(90deg);
             transform: rotateX(90deg);
@@ -130,9 +132,9 @@
             transform: rotateX(0deg);
           }
           .neon:hover span:nth-child(2) {
-            background: #000;
-            color: #000;
-            box-shadow: 0 0 5px #0bf4f3, 0 0 5px #0bf4f3 inset;
+            background: $black;
+            color: $black;
+            box-shadow: 0 0 5px $turquoise, 0 0 5px $turquoise inset;
             -webkit-transform: rotateX(-90deg);
             -moz-transform: rotateX(-90deg);
             transform: rotateX(-90deg);
@@ -158,7 +160,7 @@
                 overflow: hidden;
                 margin-bottom: 40px;
                 min-width: 200px;
-                // box-shadow: gray 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, white 0px -2px 6px 0px inset;
+                // box-shadow: gray 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, $white 0px -2px 6px 0px inset;
                 .img img{
                     width: 100%;
                     height: 300px;
@@ -170,7 +172,7 @@
                     align-items: center;
                     justify-content: center;
                     height: 40px;
-                    background: white;
+                    background: $white;
                     h3 {
                         font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
                         font-weight: 100;

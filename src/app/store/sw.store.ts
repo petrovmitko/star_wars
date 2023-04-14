@@ -4,6 +4,8 @@ import { take } from "rxjs";
 import { IFilmsData } from "../models/films.interfaces";
 import { IPlanetsData } from "../models/planets.interfaces";
 import { ISpeciesData } from "../models/species.interfaces";
+import { IStarshipsData } from "../models/starships.interfaces";
+import { IVehiclesData } from "../models/vehicles.interfaces";
 
 export interface IAppStore {
   loading: boolean;
@@ -11,6 +13,8 @@ export interface IAppStore {
   films: IFilmsData;
   planets: IPlanetsData;
   species: ISpeciesData;
+  starships: IStarshipsData;
+  vehicles: IVehiclesData;
 }
 
 export const initialState: IAppStore = { 
@@ -38,6 +42,18 @@ export const initialState: IAppStore = {
     next: '',
     previous: '',
     results: [],
+  },
+  starships: {
+    count: 0,
+    next: '',
+    previous: '',
+    results: [],
+  },
+  vehicles: {
+    count: 0,
+    next: '',
+    previous: '',
+    results: [],
   }
 };
 
@@ -56,4 +72,6 @@ export const selectCharacters = createSelector(swState, (state: IAppStore) => st
 export const selectFilms = createSelector(swState, (state: IAppStore) => state.films.results); 
 export const selectPlanets = createSelector(swState, (state: IAppStore) => state.planets.results); 
 export const selectSpecies = createSelector(swState, (state: IAppStore) => state.species.results); 
+export const selectStarships = createSelector(swState, (state: IAppStore) => state.starships.results); 
+export const selectVehicles = createSelector(swState, (state: IAppStore) => state.vehicles.results); 
 export const getLoader = createSelector(swState, (state: IAppStore) => state.loading); 
