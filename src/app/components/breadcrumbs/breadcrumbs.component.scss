@@ -1,0 +1,26 @@
+.breadcrumb-wrapper {
+    background: white;
+    padding: 6px 12px;
+    display: flex;
+    list-style: none;
+    li, a {
+        font-size: 20px;
+        color: black;
+        margin-left: 10px;
+    }
+    li {
+        position: relative;
+        &:not(:last-child):after {
+            content: '/';
+            display: block;
+            font-size: 20px;
+            font-weight: bold;
+            position: absolute;
+            top: 0;
+            right: -12px;
+        }
+    }
+    a {
+        text-decoration: none;
+    }
+}

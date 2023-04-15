@@ -17,6 +17,7 @@ import { swReducer } from './store/reducers/sw.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { SwEffects } from './store/effects/sw.effects';
 import { LoaderComponent } from './components/loader/loader.component';
+import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { LoaderComponent } from './components/loader/loader.component';
     VehiclesComponent,
     PlanetsComponent,
     LoaderComponent,
+    BreadcrumbsComponent,
   ],
   imports: [
     BrowserModule,
