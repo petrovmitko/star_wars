@@ -9,19 +9,16 @@ import { StarshipsComponent } from './pages/starships/starships.component';
 import { VehiclesComponent } from './pages/vehicles/vehicles.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent, data: { breadcrumb: 'Home' },
-    children: [
-      { path: 'characters', component: CharactersComponent, data: { breadcrumb: 'Characters' }},
-      { path: 'films', component: FilmsComponent, data: { breadcrumb: 'Films' }},
-      { path: 'species', component: SpeciesComponent, data: { breadcrumb: 'Species' } },
-      { path: 'starships', component: StarshipsComponent, data: { breadcrumb: 'Starships' } },
-      { path: 'vehicles', component: VehiclesComponent, data: { breadcrumb: 'Vehicles' } },
-      { path: 'planets', component: PlanetsComponent, data: { breadcrumb: 'Planets' } },
-    ],
-  },
+  { path: 'home', component: HomeComponent, data: { breadcrumb: 'Home' }},
+  { path: 'characters', component: CharactersComponent, data: { breadcrumb: 'Characters' }},
+  { path: 'films', component: FilmsComponent, data: { breadcrumb: 'Films' }},
+  { path: 'species', component: SpeciesComponent, data: { breadcrumb: 'Species' } },
+  { path: 'starships', component: StarshipsComponent, data: { breadcrumb: 'Starships' } },
+  { path: 'vehicles', component: VehiclesComponent, data: { breadcrumb: 'Vehicles' } },
+  { path: 'planets', component: PlanetsComponent, data: { breadcrumb: 'Planets' } },
   { 
     path: '', 
-    redirectTo: '/home',
+    redirectTo: 'home',
     pathMatch: 'full',
   },
   

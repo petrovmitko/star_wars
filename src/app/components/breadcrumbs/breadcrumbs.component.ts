@@ -10,12 +10,17 @@ import { BreadcrumbService } from 'src/app/services/breadcrumb.service';
 })
 export class BreadcrumbsComponent implements OnInit {
 
+  isHome = false;
   breadcrumbs$: Observable<Breadcrumb[]> | undefined; 
   
   constructor(private readonly breadcrumbService: BreadcrumbService) { 
     this.breadcrumbs$ = breadcrumbService.breadcrumbs$; 
   } 
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.breadcrumbs$?.subscribe(x => {
+      this.isHome = x[0].label !== 'Home';
+    })
+  }
 
 }

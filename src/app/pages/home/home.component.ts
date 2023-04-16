@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -16,14 +16,12 @@ export class HomeComponent implements OnInit {
     {img: 'at-at-m.jpg', title: 'vehicles', url: 'vehicles'},
     {img: 'planet-m.jpg', title: 'planets', url: 'planets'},
   ];
-  activatedRoute: ActivatedRoute | null | undefined;
 
-  constructor(private router: Router, private route: ActivatedRoute, ) {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
   goTo(x: string ): void {
-    const route: string = '/home/' + x; 
-    this.router.navigate([route]);
+    this.router.navigate([x]);
   }
 }

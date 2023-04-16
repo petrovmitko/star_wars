@@ -1,4 +1,7 @@
 <ul class="breadcrumb-wrapper"> 
+    <li *ngIf="isHome">
+      <a [href]="" routerLink="home">Home</a>
+    </li>
     <li *ngFor="let breadcrumb of (breadcrumbs$ | async)"> 
       <a [href]="breadcrumb.url">{{ breadcrumb.label }}</a> 
     </li> 
