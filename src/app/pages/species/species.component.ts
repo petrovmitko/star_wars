@@ -53,6 +53,7 @@ export class SpeciesComponent implements OnInit {
   }
 
   goToPage(page: number): void {
+    if(page === this.page) return;
     this.store.dispatch(updateLoading(true));
     this.page = page;
     this.store.dispatch(getSpeciesData(`species?page=${this.page}`));

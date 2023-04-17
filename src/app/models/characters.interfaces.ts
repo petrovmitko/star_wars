@@ -6,10 +6,9 @@ export interface ICharactersData {
 }
   
 export interface ICharacters {
-  characters: any;
   birth_year: string;
-  created: Date;
-  edited: Date;
+  created: Date | string;
+  edited: Date | string;
   eye_color: string;
   gender: string;
   hair_color: string;

@@ -1,7 +1,7 @@
 import { createAction } from '@ngrx/store';
-import { ICharactersData } from 'src/app/models/characters.interfaces';
+import { ICharacters, ICharactersData } from 'src/app/models/characters.interfaces';
 import { IFilmsData } from 'src/app/models/films.interfaces';
-import { IPlanetsData } from 'src/app/models/planets.interfaces';
+import { IPlanets, IPlanetsData } from 'src/app/models/planets.interfaces';
 import { ISpeciesData } from 'src/app/models/species.interfaces';
 import { IStarshipsData } from 'src/app/models/starships.interfaces';
 import { IVehiclesData } from 'src/app/models/vehicles.interfaces';
@@ -19,8 +19,14 @@ export enum SwTypes {
     GET_STARSHIPS = '[STARSHIPS] Get Starships',
     UPDATE_STARSHIPS = '[STARSHIPS] Update Starships',
     GET_VEHICLES = '[VEHICLES] Get Vehicles',
-    UPDATE_VEHICLES = '[VEHICLES] Update Vehicles'
-    
+    UPDATE_VEHICLES = '[VEHICLES] Update Vehicles',
+    // //////////
+    GET_CURRENT_CHARACTER = '[CHARACTER] Get Current Character',
+    RESET_CURRENT_CHARACTER = '[CHARACTER] Reset Current Character',
+    UPDATE_CURRENT_CHARACTER = '[CHARACTER] Update Current Character',
+    GET_CURRENT_PLANET = '[PLANET] Get Current Planet',
+    RESET_CURRENT_PLANET = '[PLANET] Reset Current Planet',
+    UPDATE_CURRENT_PLANET = '[PLANET] Update Current Planet',
 }
 
 export const updateLoading = createAction(SwTypes.UPDATE_LOADING, (loading: boolean) => ({ loading }));
@@ -55,3 +61,18 @@ export const getVehiclesData = createAction(SwTypes.GET_VEHICLES, (uri: string) 
 export const updateVehiclesData = createAction(SwTypes.UPDATE_VEHICLES, 
 (vehicles: IVehiclesData) => ({ vehicles }));
 
+// //////////////
+
+export const getCurrentCharacter = createAction(SwTypes.GET_CURRENT_CHARACTER, (uri: string) => ({ uri }));
+
+export const updateCurrentCharacter = createAction(SwTypes.UPDATE_CURRENT_CHARACTER, 
+(character: ICharacters) => ({ character }));
+
+export const resetCurrentCharacter = createAction(SwTypes.RESET_CURRENT_CHARACTER);
+
+export const getCurrentPlanet = createAction(SwTypes.GET_CURRENT_PLANET, (uri: string) => ({ uri }));
+
+export const updateCurrentPlanet = createAction(SwTypes.UPDATE_CURRENT_PLANET, 
+(planet: IPlanets) => ({ planet }));
+
+export const resetCurrentPlanet = createAction(SwTypes.RESET_CURRENT_PLANET);

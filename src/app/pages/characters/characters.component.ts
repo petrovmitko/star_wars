@@ -6,6 +6,7 @@ import { updateLoading, getCharactersData } from 'src/app/store/actions/sw.actio
 import { IAppStore, selectCharacters, getLoader } from 'src/app/store/sw.store';
 import { ICharacters } from 'src/app/models/characters.interfaces';
 import { SwapiService } from 'src/app/services/swapi.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-characters',
@@ -21,7 +22,9 @@ export class CharactersComponent implements OnInit {
 
   pageArray = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-  constructor( private store: Store<{sw: IAppStore}>, private swapiService: SwapiService ) { 
+  constructor( private store: Store<{sw: IAppStore}>, 
+    private swapiService: SwapiService, 
+    private router: Router ) { 
     this.sw$ = store.select('sw');
   }
 
@@ -54,8 +57,14 @@ export class CharactersComponent implements OnInit {
   }
 
   goToPage(page: number): void {
+    if(page === this.page) return;
     this.store.dispatch(updateLoading(true));
     this.page = page;
     this.store.dispatch(getCharactersData(`people?page=${this.page}`));
+  }
+
+  openDetailsPage(url: string): void {
+    const id = this.swapiService.getImg(url);
+    this.router.navigate([`characters/${id}`]);
   }
 }

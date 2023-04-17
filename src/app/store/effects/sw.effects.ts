@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { catchError, mergeMap, switchMap } from 'rxjs/operators';
 import { CommonService } from 'src/app/services/common.service';
-import { SwTypes, updateFilmsData, updatePlanetsData, updateSpeciesData, updateStarshipsData, updateVehiclesData } from 'src/app/store/actions/sw.action';
+import { SwTypes, resetCurrentCharacter, resetCurrentPlanet, updateCurrentCharacter, updateCurrentPlanet, updateFilmsData, updatePlanetsData, updateSpeciesData, updateStarshipsData, updateVehiclesData } from 'src/app/store/actions/sw.action';
 import { updateLoading, updateCharactersData } from 'src/app/store/actions/sw.action';
 import { IAppStore } from '../sw.store';
 @Injectable()
@@ -102,6 +102,42 @@ export class SwEffects {
             return [
             updateVehiclesData(vehicles),
             updateLoading(false),
+            ];
+        }),
+        catchError((err) => {
+            return [updateLoading(false)]; 
+        }),
+      )),
+    )
+  );
+
+  getCurrentCharacter$ = createEffect(() => this.actions$.pipe(
+    ofType(SwTypes.GET_CURRENT_CHARACTER),
+    switchMap(({uri}) => this.commonService.getCurrentCharacter(uri)
+      .pipe(
+        mergeMap((character) => {
+            return [
+              resetCurrentCharacter(),
+              updateCurrentCharacter(character),
+              updateLoading(false),
+            ];
+        }),
+        catchError((err) => {
+            return [updateLoading(false)]; 
+        }),
+      )),
+    )
+  );
+
+  getCurrentPlanet$ = createEffect(() => this.actions$.pipe(
+    ofType(SwTypes.GET_CURRENT_PLANET),
+    switchMap(({uri}) => this.commonService.getCurrentPlanet(uri)
+      .pipe(
+        mergeMap((planet) => {
+            return [
+              resetCurrentPlanet(),
+              updateCurrentPlanet(planet),
+              updateLoading(false),
             ];
         }),
         catchError((err) => {

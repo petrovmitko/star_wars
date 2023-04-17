@@ -18,6 +18,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { SwEffects } from './store/effects/sw.effects';
 import { LoaderComponent } from './components/loader/loader.component';
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
+import { CharacterDetailsPageComponent } from './pages/character-details-page/character-details-page.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.compo
     PlanetsComponent,
     LoaderComponent,
     BreadcrumbsComponent,
+    CharacterDetailsPageComponent,
   ],
   imports: [
     BrowserModule,

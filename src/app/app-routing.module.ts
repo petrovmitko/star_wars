@@ -7,10 +7,15 @@ import { PlanetsComponent } from './pages/planets/planets.component';
 import { SpeciesComponent } from './pages/species/species.component';
 import { StarshipsComponent } from './pages/starships/starships.component';
 import { VehiclesComponent } from './pages/vehicles/vehicles.component';
+import { CharacterDetailsPageComponent } from './pages/character-details-page/character-details-page.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, data: { breadcrumb: 'Home' }},
-  { path: 'characters', component: CharactersComponent, data: { breadcrumb: 'Characters' }},
+  { path: 'characters', data: { breadcrumb: 'Characters' },
+  children: [
+      {path: '', component: CharactersComponent, data: { breadcrumb: '' }},
+      { path: ':id', component: CharacterDetailsPageComponent, data: { breadcrumb: 'Details'}},
+  ]},
   { path: 'films', component: FilmsComponent, data: { breadcrumb: 'Films' }},
   { path: 'species', component: SpeciesComponent, data: { breadcrumb: 'Species' } },
   { path: 'starships', component: StarshipsComponent, data: { breadcrumb: 'Starships' } },
@@ -21,8 +26,10 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full',
   },
-  
-//   { path: 'details/:id', component: DetailsPageComponent },
+  { 
+    path: '**', 
+    redirectTo: 'home',
+  },
 ];
 
 @NgModule({

@@ -1,8 +1,8 @@
 import { Store, createFeatureSelector, createSelector } from "@ngrx/store";
-import { ICharactersData } from "../models/characters.interfaces";
+import { ICharacters, ICharactersData } from "../models/characters.interfaces";
 import { take } from "rxjs";
 import { IFilmsData } from "../models/films.interfaces";
-import { IPlanetsData } from "../models/planets.interfaces";
+import { IPlanets, IPlanetsData } from "../models/planets.interfaces";
 import { ISpeciesData } from "../models/species.interfaces";
 import { IStarshipsData } from "../models/starships.interfaces";
 import { IVehiclesData } from "../models/vehicles.interfaces";
@@ -15,6 +15,8 @@ export interface IAppStore {
   species: ISpeciesData;
   starships: IStarshipsData;
   vehicles: IVehiclesData;
+  currentCharacter: ICharacters;
+  currentPlanet: IPlanets;
 }
 
 export const initialState: IAppStore = { 
@@ -54,6 +56,40 @@ export const initialState: IAppStore = {
     next: '',
     previous: '',
     results: [],
+  },
+  currentCharacter: {
+    birth_year: '',
+    created: '',
+    edited: '',
+    eye_color: '',
+    gender: '',
+    hair_color: '',
+    height: '',
+    homeworld: '',
+    mass: '',
+    name: '',
+    skin_color: '',
+    films: [],
+    starships: [],
+    species: [],
+    url: '',
+    vehicles: [],
+  },
+  currentPlanet: {
+    name: '',
+    rotation_period: '',
+    orbital_period: '',
+    diameter: '',
+    climate: '',
+    gravity: '',
+    terrain: '',
+    surface_water: '',
+    population: '',
+    residents: [],
+    films: [],
+    created: '',
+    edited: '',
+    url: '',
   }
 };
 
@@ -73,5 +109,8 @@ export const selectFilms = createSelector(swState, (state: IAppStore) => state.f
 export const selectPlanets = createSelector(swState, (state: IAppStore) => state.planets.results); 
 export const selectSpecies = createSelector(swState, (state: IAppStore) => state.species.results); 
 export const selectStarships = createSelector(swState, (state: IAppStore) => state.starships.results); 
-export const selectVehicles = createSelector(swState, (state: IAppStore) => state.vehicles.results); 
+export const selectVehicles = createSelector(swState, (state: IAppStore) => state.vehicles.results);
+
+export const selectCharacterData = createSelector(swState, (state: IAppStore) => state.currentCharacter); 
+export const selectPlanetData = createSelector(swState, (state: IAppStore) => state.currentPlanet); 
 export const getLoader = createSelector(swState, (state: IAppStore) => state.loading); 

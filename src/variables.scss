@@ -1,3 +1,39 @@
 $white: #fff;
 $black: #000;
 $turquoise: #0bf4f3;
+$magenta: #ED15ED;
+$yellow: #f8bf00;
+
+
+// neon text
+
+@mixin neon-green {
+    color: $white;
+    text-shadow:
+    0 0 5px #fff, 0 0 10px #32ef2f, 
+    0 0 10px #32ef2f, 0 0 10px #32ef2f, 
+    0 0 10px #32ef2f, 0 0 10px #32ef2f, 0 0 10px #32ef2f;
+}
+
+@mixin neon-purple {
+    color: $white;
+    text-shadow:
+    0 0 5px #fff, 0 0 10px purple, 
+    0 0 10px purple, 0 0 10px purple, 
+    0 0 10px purple, 0 0 10px purple, 0 0 10px purple;
+}
+
+@mixin neon-blue {
+    color: $white;
+    text-shadow:
+    0 0 5px #fff, 0 0 10px blue, 
+    0 0 10px blue, 0 0 10px blue, 
+    0 0 10px blue, 0 0 10px blue, 0 0 10px blue;
+}
+@mixin neon-red {
+    color: $white;
+    text-shadow:
+    0 0 5px #fff, 0 0 10px red, 
+    0 0 10px red, 0 0 10px red, 
+    0 0 10px red, 0 0 10px red, 0 0 10px red;
+}

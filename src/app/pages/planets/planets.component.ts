@@ -49,6 +49,7 @@ export class PlanetsComponent implements OnInit {
   }
 
   goToPage(page: number): void {
+    if(page === this.page) return;
     this.store.dispatch(updateLoading(true));
     this.page = page;
     this.store.dispatch(getPlanetsData(`planets?page=${this.page}`));

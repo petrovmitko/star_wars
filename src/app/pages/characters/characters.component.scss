@@ -23,11 +23,21 @@
               font-family: 'Karla';
               cursor: pointer;
               border: 1px solid $turquoise;
+              &:hover {
+                box-shadow: 0 0 5px $magenta, 0 0 7px $magenta inset;
+                color: $magenta;
+                border: 1px solid $magenta;
+              }
           }
           .selected {
               background: $turquoise;
               color: $black;
               font-weight: bold;
+              &:hover {
+                box-shadow: 0 0 5px $turquoise, 0 0 7px $turquoise inset;
+                border: 1px solid $turquoise;
+                color: $black;
+              }
           }
       }
       .custom-btn {

@@ -19,7 +19,9 @@ export class BreadcrumbsComponent implements OnInit {
 
   ngOnInit(): void {
     this.breadcrumbs$?.subscribe(x => {
-      this.isHome = x[0].label !== 'Home';
+      if(x && x[0]) {
+        this.isHome = x[0].label !== 'Home';
+      }
     })
   }
 

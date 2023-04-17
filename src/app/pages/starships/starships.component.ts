@@ -52,6 +52,7 @@ export class StarshipsComponent implements OnInit {
   }
 
   goToPage(page: number): void {
+    if(page === this.page) return;
     this.store.dispatch(updateLoading(true));
     this.page = page;
     this.store.dispatch(getStarshipsData(`starships?page=${this.page}`));

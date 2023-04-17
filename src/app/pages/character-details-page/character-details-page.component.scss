@@ -1,0 +1,51 @@
+@import '../../../variables.scss';
+
+.modal-wrapper {
+    width: 90vw;
+    margin: 20px auto 20px;
+    background: transparent;
+    padding: 20px;
+    .main-info {
+        &-img-box {
+            display: flex;
+            .character-img {
+                width: 400px;
+                height: 400px;
+                object-fit: cover;
+                object-position: top center;
+                border-radius: 20px;
+            }
+            .data {
+                font-size: 20px;
+                color: $white;
+                margin-left: 20px;
+                font-family: 'karla';
+                h2 {
+                    margin-bottom: 20px;
+                    color: #fff;
+                }
+                p {
+                    font-size: 20px;
+                    margin-bottom: 10px;
+                    color: $yellow;
+                }
+                .prop-info {
+                    opacity: 0.6;
+                    color: $white;
+                }
+                .neon-green {
+                    @include neon-green;
+                }
+                .neon-purple {
+                    @include neon-purple;
+                }
+                .neon-red {
+                    @include neon-red;
+                }
+                .neon-blue {
+                    @include neon-blue;
+                }
+            }
+        }
+    }
+}

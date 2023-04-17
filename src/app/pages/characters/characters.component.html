@@ -10,7 +10,7 @@
     </div>
     <div class="content" *ngIf="!(loader$ | async)">
         <div class="cards-box">
-            <div class="card" *ngFor="let character of results$ | async">
+            <div class="card" *ngFor="let character of results$ | async" (click)="openDetailsPage(character.url)">
                 <div class="img">
                     <img src="assets/characters/{{getImg(character.url)}}.jpg" alt="">
                 </div>
