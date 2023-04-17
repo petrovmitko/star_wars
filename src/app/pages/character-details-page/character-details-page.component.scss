@@ -33,6 +33,13 @@
                     opacity: 0.6;
                     color: $white;
                 }
+                .homeworld-link {
+                    cursor: pointer;
+                    color: $magenta;
+                    &:hover {
+                        color: $turquoise;
+                    }
+                }
                 .neon-green {
                     @include neon-green;
                 }

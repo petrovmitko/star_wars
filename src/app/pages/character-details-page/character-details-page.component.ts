@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable, filter } from 'rxjs';
+import { Observable, filter, take } from 'rxjs';
 import { ICharacters } from 'src/app/models/characters.interfaces';
 import { IPlanets } from 'src/app/models/planets.interfaces';
 import { SwapiService } from 'src/app/services/swapi.service';
@@ -17,7 +17,6 @@ export class CharacterDetailsPageComponent implements OnInit {
 
   uri?: string;
 
-  planet?: string;
   neon = '';
   neonArr = ['neon-red', 'neon-blue', 'neon-green', 'neon-purple']
   
@@ -55,6 +54,12 @@ export class CharacterDetailsPageComponent implements OnInit {
     const randomNum = Math.floor(Math.random() * 4);
     this.neon = this.neonArr[randomNum];
     return this.neon;
+  }
+
+  visitPlanet(): void {
+    this.planet$?.pipe(take(1)).subscribe((data: IPlanets) => {
+      console.log(data.url)
+    });
   }
 
 }

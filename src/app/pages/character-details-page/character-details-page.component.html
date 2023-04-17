@@ -1,16 +1,20 @@
 <div class="modal-wrapper">
     <div class="main-info">
-        <div class="main-info-img-box">
+        <app-rotation-loader *ngIf="(loader$ | async)"></app-rotation-loader>
+        <div *ngIf="!(loader$ | async)" class="main-info-img-box">
             <img class="character-img" src="/assets/characters/{{uri}}.jpg" alt="character-image">
             <div class="data">
                 <h2 [ngClass]="!neon ? getRandomInt(): neon">{{ (data$ | async)?.name }}</h2>
-                <p><span class="prop-info">Birth year:</span> {{ (data$ | async)?.birth_year }}</p>
+                <p><span class="prop-info">Birth Year:</span> {{ (data$ | async)?.birth_year }}</p>
                 <p><span class="prop-info">Gender:</span> {{ (data$ | async)?.gender }}</p>
-                <p><span class="prop-info">Height:</span> {{ (data$ | async)?.height }}</p>
-                <p><span class="prop-info">Mass:</span> {{ (data$ | async)?.mass }}</p>
-                <p><span class="prop-info">Skin color:</span> {{ (data$ | async)?.skin_color }}</p>
-                <p><span class="prop-info">Hair color:</span> {{ (data$ | async)?.hair_color }}</p>
-                <p><span class="prop-info">Homeworld:</span> {{ (planet$ | async)?.name}}</p>
+                <p><span class="prop-info">Height:</span> {{ (data$ | async)?.height }} cm</p>
+                <p><span class="prop-info">Mass:</span> {{ (data$ | async)?.mass }} kg</p>
+                <p><span class="prop-info">Skin Color:</span> {{ (data$ | async)?.skin_color }}</p>
+                <p><span class="prop-info">Hair Color:</span> {{ (data$ | async)?.hair_color }}</p>
+                <p> 
+                    <span class="prop-info">Homeworld:</span>
+                    <span class="homeworld-link" (click)="visitPlanet()">{{ ' ' + (planet$ | async)?.name}}</span>
+                </p>
             </div>
         </div>
         <div class="main-info-releted-data"></div>
