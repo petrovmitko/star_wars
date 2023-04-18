@@ -8,6 +8,7 @@ import { SpeciesComponent } from './pages/species/species.component';
 import { StarshipsComponent } from './pages/starships/starships.component';
 import { VehiclesComponent } from './pages/vehicles/vehicles.component';
 import { CharacterDetailsPageComponent } from './pages/character-details-page/character-details-page.component';
+import { PlanetDetailsPageComponent } from './pages/planet-details-page/planet-details-page.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, data: { breadcrumb: 'Home' }},
@@ -16,11 +17,18 @@ const routes: Routes = [
       {path: '', component: CharactersComponent, data: { breadcrumb: '' }},
       { path: ':id', component: CharacterDetailsPageComponent, data: { breadcrumb: 'Details'}},
   ]},
-  { path: 'films', component: FilmsComponent, data: { breadcrumb: 'Films' }},
+  { path: 'films',  data: { breadcrumb: 'Films' }, 
+  children: [
+    {path: '', component: FilmsComponent, data: { breadcrumb: ''}},
+  ]},
   { path: 'species', component: SpeciesComponent, data: { breadcrumb: 'Species' } },
   { path: 'starships', component: StarshipsComponent, data: { breadcrumb: 'Starships' } },
   { path: 'vehicles', component: VehiclesComponent, data: { breadcrumb: 'Vehicles' } },
-  { path: 'planets', component: PlanetsComponent, data: { breadcrumb: 'Planets' } },
+  { path: 'planets', data: { breadcrumb: 'Planets' }, 
+  children: [
+    {path: '',  component: PlanetsComponent, data: { breadcrumb: '' }},
+    { path: ':id', component: PlanetDetailsPageComponent, data: { breadcrumb: 'Details'}},
+  ]},
   { 
     path: '', 
     redirectTo: 'home',

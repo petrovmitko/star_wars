@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonService } from 'src/app/services/common.service';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { updateLoading, getCharactersData } from 'src/app/store/actions/sw.action';

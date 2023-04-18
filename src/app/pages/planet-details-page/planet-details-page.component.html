@@ -1,0 +1,20 @@
+<div class="modal-wrapper">
+    <div class="main-info">
+        <app-rotation-loader *ngIf="(loader$ | async)"></app-rotation-loader>
+        <div *ngIf="!(loader$ | async)" class="main-info-img-box">
+            <img class="card-img" src="/assets/planets/{{uri}}.jpg" alt="character-image">
+            <div class="data">
+                <h2 [ngClass]="!neon ? getRandomInt(): neon">{{ (data$ | async)?.name }}</h2>
+                <p><span class="prop-info">Population:</span> {{ (data$ | async)?.population }}</p>
+                <p><span class="prop-info">Rotation Period:</span> {{ (data$ | async)?.rotation_period }} hours</p>
+                <p><span class="prop-info">Orbital Period:</span> {{ (data$ | async)?.orbital_period }} days</p>
+                <p><span class="prop-info">Diameter:</span> {{ (data$ | async)?.diameter }} km</p>
+                <p><span class="prop-info">Gravity:</span> {{ (data$ | async)?.gravity }}</p>
+                <p><span class="prop-info">Terrain:</span> {{ (data$ | async)?.terrain }}</p>
+                <p><span class="prop-info">Surface Water:</span> {{ (data$ | async)?.surface_water }}%</p>
+                <p><span class="prop-info">Climate:</span> {{ (data$ | async)?.climate }}</p>
+            </div>
+        </div>
+        <div class="main-info-releted-data"></div>
+    </div>
+</div>

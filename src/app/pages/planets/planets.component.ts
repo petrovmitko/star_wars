@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IPlanets } from 'src/app/models/planets.interfaces';
@@ -20,7 +21,11 @@ export class PlanetsComponent implements OnInit {
   results$: Observable<IPlanets[]> | undefined;
   loader$ : Observable<boolean> | undefined;
 
-  constructor( private store: Store<{sw: IAppStore}>, private swapiService: SwapiService) { 
+  constructor( 
+    private store: Store<{sw: IAppStore}>, 
+    private swapiService: SwapiService,
+    private router: Router,
+  ) { 
     this.sw$ = store.select('sw');
   }
 
@@ -53,6 +58,11 @@ export class PlanetsComponent implements OnInit {
     this.store.dispatch(updateLoading(true));
     this.page = page;
     this.store.dispatch(getPlanetsData(`planets?page=${this.page}`));
+  }
+
+  openDetailsPage(url: string): void {
+    const id = this.swapiService.getImg(url);
+    this.router.navigate([`planets/${id}`]);
   }
 
 }

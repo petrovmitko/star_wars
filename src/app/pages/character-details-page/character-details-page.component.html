@@ -2,7 +2,7 @@
     <div class="main-info">
         <app-rotation-loader *ngIf="(loader$ | async)"></app-rotation-loader>
         <div *ngIf="!(loader$ | async)" class="main-info-img-box">
-            <img class="character-img" src="/assets/characters/{{uri}}.jpg" alt="character-image">
+            <img class="card-img" src="/assets/characters/{{uri}}.jpg" alt="character-image">
             <div class="data">
                 <h2 [ngClass]="!neon ? getRandomInt(): neon">{{ (data$ | async)?.name }}</h2>
                 <p><span class="prop-info">Birth Year:</span> {{ (data$ | async)?.birth_year }}</p>

@@ -20,6 +20,7 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.component';
 import { CharacterDetailsPageComponent } from './pages/character-details-page/character-details-page.component';
 import { RotationLoaderComponent } from './components/rotation-loader/rotation-loader.component';
+import { PlanetDetailsPageComponent } from './pages/planet-details-page/planet-details-page.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { RotationLoaderComponent } from './components/rotation-loader/rotation-l
     BreadcrumbsComponent,
     CharacterDetailsPageComponent,
     RotationLoaderComponent,
+    PlanetDetailsPageComponent,
   ],
   imports: [
     BrowserModule,

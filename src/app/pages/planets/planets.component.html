@@ -10,7 +10,7 @@
     </div>
     <div class="content" *ngIf="!(loader$ | async)">
         <div class="cards-box">
-            <div class="card" *ngFor="let planet of results$ | async">
+            <div class="card" *ngFor="let planet of results$ | async" (click)="openDetailsPage(planet.url)">
                 <div class="img">
                     <img class="planet-card-img" *ngIf="planet.name !== 'unknown'" src="assets/planets/{{getImg(planet.url)}}.jpg" alt="">
                     <img class="planet-card-img" *ngIf="planet.name === 'unknown'" src="assets/unknown.jpg" alt="">
