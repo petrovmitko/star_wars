@@ -24,7 +24,6 @@ export class PlanetsComponent implements OnInit {
   constructor( 
     private store: Store<{sw: IAppStore}>, 
     private swapiService: SwapiService,
-    private router: Router,
   ) { 
     this.sw$ = store.select('sw');
   }
@@ -61,8 +60,7 @@ export class PlanetsComponent implements OnInit {
   }
 
   openDetailsPage(url: string): void {
-    const id = this.swapiService.getImg(url);
-    this.router.navigate([`planets/${id}`]);
+    this.swapiService.openDetailsPage(url, 'planets');
   }
 
 }

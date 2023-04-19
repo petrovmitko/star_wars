@@ -21,9 +21,10 @@ export class CharactersComponent implements OnInit {
 
   pageArray = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-  constructor( private store: Store<{sw: IAppStore}>, 
-    private swapiService: SwapiService, 
-    private router: Router ) { 
+  constructor ( 
+    private store: Store<{sw: IAppStore}>, 
+    private swapiService: SwapiService
+    ) { 
     this.sw$ = store.select('sw');
   }
 
@@ -59,7 +60,6 @@ export class CharactersComponent implements OnInit {
   }
 
   openDetailsPage(url: string): void {
-    const id = this.swapiService.getImg(url);
-    this.router.navigate([`characters/${id}`]);
+    this.swapiService.openDetailsPage(url, 'characters');
   }
 }

@@ -1,11 +1,11 @@
 import { Store, createFeatureSelector, createSelector } from "@ngrx/store";
 import { ICharacters, ICharactersData } from "../models/characters.interfaces";
 import { take } from "rxjs";
-import { IFilmsData } from "../models/films.interfaces";
+import { IFilms, IFilmsData } from "../models/films.interfaces";
 import { IPlanets, IPlanetsData } from "../models/planets.interfaces";
-import { ISpeciesData } from "../models/species.interfaces";
-import { IStarshipsData } from "../models/starships.interfaces";
-import { IVehiclesData } from "../models/vehicles.interfaces";
+import { ISpecies, ISpeciesData } from "../models/species.interfaces";
+import { IStarships, IStarshipsData } from "../models/starships.interfaces";
+import { IVehicles, IVehiclesData } from "../models/vehicles.interfaces";
 
 export interface IAppStore {
   loading: boolean;
@@ -17,6 +17,10 @@ export interface IAppStore {
   vehicles: IVehiclesData;
   currentCharacter: ICharacters;
   currentPlanet: IPlanets;
+  currentFilm: IFilms;
+  currentSpecie: ISpecies;
+  currentStarship: IStarships;
+  currentVehicle: IVehicles;
 }
 
 export const initialState: IAppStore = { 
@@ -90,6 +94,77 @@ export const initialState: IAppStore = {
     created: '',
     edited: '',
     url: '',
+  },
+  currentFilm: {
+    title: '',
+    episode_id: 0,
+    opening_crawl: '',
+    director: '',
+    producer: '',
+    release_date: '',
+    characters: [],
+    planets: [],
+    starships: [],
+    vehicles: [],
+    species: [],
+    created: '',
+    edited: '',
+    url: '',
+  },
+  currentSpecie: {
+    name: '',
+    classification: 0,
+    designation: '',
+    average_height: '',
+    skin_colors: '',
+    hair_colors: '',
+    eye_colors: '',
+    average_lifespan: '',
+    homeworld: '',
+    language: '',
+    films: [],
+    people: [],
+    created: '',
+    edited: '',
+    url: '',
+  },
+  currentStarship: {
+    name: '',
+    model: 0,
+    manufacturer: '',
+    cost_in_credits: '',
+    length: '',
+    max_atmosphering_speed: '',
+    crew: '',
+    passengers: '',
+    cargo_capacity: '',
+    consumables: '',
+    hyperdrive_rating: '',
+    MGLT: '',
+    starship_class: '',
+    pilots: [],
+    films: [],
+    created: '',
+    edited: '',
+    url: '',
+  },
+  currentVehicle: {
+    name: '',
+    model: 0,
+    manufacturer: '',
+    cost_in_credits: '',
+    length: '',
+    max_atmosphering_speed: '',
+    crew: '',
+    passengers: '',
+    cargo_capacity: '',
+    consumables: '',
+    vehicle_class: '',
+    pilots: [],
+    films: [],
+    created: '',
+    edited: '',
+    url: '',
   }
 };
 
@@ -112,5 +187,10 @@ export const selectStarships = createSelector(swState, (state: IAppStore) => sta
 export const selectVehicles = createSelector(swState, (state: IAppStore) => state.vehicles.results);
 
 export const selectCharacterData = createSelector(swState, (state: IAppStore) => state.currentCharacter); 
-export const selectPlanetData = createSelector(swState, (state: IAppStore) => state.currentPlanet); 
+export const selectPlanetData = createSelector(swState, (state: IAppStore) => state.currentPlanet);
+
+export const selectFilmData = createSelector(swState, (state: IAppStore) => state.currentFilm);  
+export const selectSpecieData = createSelector(swState, (state: IAppStore) => state.currentSpecie); 
+export const selectStarshipData = createSelector(swState, (state: IAppStore) => state.currentStarship); 
+export const selectVehicleData = createSelector(swState, (state: IAppStore) => state.currentVehicle); 
 export const getLoader = createSelector(swState, (state: IAppStore) => state.loading); 

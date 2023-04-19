@@ -21,6 +21,10 @@ import { BreadcrumbsComponent } from './components/breadcrumbs/breadcrumbs.compo
 import { CharacterDetailsPageComponent } from './pages/character-details-page/character-details-page.component';
 import { RotationLoaderComponent } from './components/rotation-loader/rotation-loader.component';
 import { PlanetDetailsPageComponent } from './pages/planet-details-page/planet-details-page.component';
+import { FilmDetailsPageComponent } from './pages/film-details-page/film-details-page.component';
+import { SpecieDetailsPageComponent } from './pages/specie-details-page/specie-details-page.component';
+import { StarshipDetailsPageComponent } from './pages/starship-details-page/starship-details-page.component';
+import { VehicleDetailsPageComponent } from './pages/vehicle-details-page/vehicle-details-page.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +43,10 @@ import { PlanetDetailsPageComponent } from './pages/planet-details-page/planet-d
     CharacterDetailsPageComponent,
     RotationLoaderComponent,
     PlanetDetailsPageComponent,
+    FilmDetailsPageComponent,
+    SpecieDetailsPageComponent,
+    StarshipDetailsPageComponent,
+    VehicleDetailsPageComponent,
   ],
   imports: [
     BrowserModule,

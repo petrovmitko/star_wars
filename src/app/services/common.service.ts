@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ICharacters, ICharactersData } from '../models/characters.interfaces';
-import { IFilmsData } from '../models/films.interfaces';
+import { IFilms, IFilmsData } from '../models/films.interfaces';
 import { IPlanets, IPlanetsData } from '../models/planets.interfaces';
 import { ISpeciesData } from '../models/species.interfaces';
 import { IStarshipsData } from '../models/starships.interfaces';
@@ -46,5 +46,9 @@ export class CommonService {
 
   getCurrentPlanet(uri: string): Observable<IPlanets>{
     return this.http.get<IPlanets>(this.swapiUrl + uri);
+  }
+
+  getCurrentFilm(uri: string): Observable<IFilms>{
+    return this.http.get<IFilms>(this.swapiUrl + uri);
   }
 }

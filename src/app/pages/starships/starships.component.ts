@@ -29,10 +29,6 @@ export class StarshipsComponent implements OnInit {
 
     this.results$ = this.store.select(selectStarships);
     this.loader$ = this.store.select(getLoader);
-
-    this.results$.subscribe(d => {
-      console.log(d);
-    });
   }
 
   getImg(x: string): string {
@@ -58,4 +54,7 @@ export class StarshipsComponent implements OnInit {
     this.store.dispatch(getStarshipsData(`starships?page=${this.page}`));
   }
 
+  openDetailsPage(url: string): void {
+    this.swapiService.openDetailsPage(url, 'starships');
+  }
 }

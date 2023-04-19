@@ -2,7 +2,7 @@
     <app-loader *ngIf="loader$ | async"></app-loader>
     <div class="content" *ngIf="!(loader$ | async)">
         <div class="cards-box">
-            <div class="card" *ngFor="let film of results$ | async">
+            <div class="card" *ngFor="let film of results$ | async" (click)="openDetailsPage(film.url)">
                 <div class="img">
                     <img src="assets/films/{{getImg(film.url)}}.jpg" alt="">
                 </div>

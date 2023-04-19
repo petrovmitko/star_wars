@@ -10,12 +10,12 @@
     </div>
     <div class="content" *ngIf="!(loader$ | async)">
         <div class="cards-box">
-            <div class="card" *ngFor="let character of results$ | async">
+            <div class="card" *ngFor="let specie of results$ | async" (click)="openDetailsPage(specie.url)">
                 <div class="img">
-                    <img src="assets/species/{{getImg(character.url)}}.jpg" alt="">
+                    <img src="assets/species/{{getImg(specie.url)}}.jpg" alt="">
                 </div>
                 <div class="info">
-                    <h3>{{character.name}}</h3>
+                    <h3>{{specie.name}}</h3>
                 </div>
             </div>
         </div>

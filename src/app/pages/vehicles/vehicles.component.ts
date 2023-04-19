@@ -30,10 +30,6 @@ export class VehiclesComponent implements OnInit {
 
     this.results$ = this.store.select(selectVehicles);
     this.loader$ = this.store.select(getLoader);
-
-    this.results$.subscribe(d => {
-      console.log(d);
-    });
   }
 
   getImg(x: string): string {
@@ -59,4 +55,7 @@ export class VehiclesComponent implements OnInit {
     this.store.dispatch(getVehiclesData(`vehicles?page=${this.page}`));
   }
 
+  openDetailsPage(url: string): void {
+    this.swapiService.openDetailsPage(url, 'vehicles');
+  }
 }

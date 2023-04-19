@@ -1,6 +1,6 @@
 import { createAction } from '@ngrx/store';
 import { ICharacters, ICharactersData } from 'src/app/models/characters.interfaces';
-import { IFilmsData } from 'src/app/models/films.interfaces';
+import { IFilms, IFilmsData } from 'src/app/models/films.interfaces';
 import { IPlanets, IPlanetsData } from 'src/app/models/planets.interfaces';
 import { ISpeciesData } from 'src/app/models/species.interfaces';
 import { IStarshipsData } from 'src/app/models/starships.interfaces';
@@ -27,6 +27,9 @@ export enum SwTypes {
     GET_CURRENT_PLANET = '[PLANET] Get Current Planet',
     RESET_CURRENT_PLANET = '[PLANET] Reset Current Planet',
     UPDATE_CURRENT_PLANET = '[PLANET] Update Current Planet',
+    GET_CURRENT_FILM = '[FILM] Get Current Film',
+    RESET_CURRENT_FILM = '[FILM] Reset Current Film',
+    UPDATE_CURRENT_FILM = '[FILM] Update Current Film',
 }
 
 export const updateLoading = createAction(SwTypes.UPDATE_LOADING, (loading: boolean) => ({ loading }));
@@ -76,3 +79,10 @@ export const updateCurrentPlanet = createAction(SwTypes.UPDATE_CURRENT_PLANET,
 (planet: IPlanets) => ({ planet }));
 
 export const resetCurrentPlanet = createAction(SwTypes.RESET_CURRENT_PLANET);
+
+export const getCurrentFilm = createAction(SwTypes.GET_CURRENT_FILM, (uri: string) => ({ uri }));
+
+export const updateCurrentFilm = createAction(SwTypes.UPDATE_CURRENT_FILM, 
+(film: IFilms) => ({ film }));
+
+export const resetCurrentFilm = createAction(SwTypes.RESET_CURRENT_FILM);

@@ -28,11 +28,14 @@ export class FilmsComponent implements OnInit {
 
     this.results$ = this.store.select(selectFilms);
     this.loader$ = this.store.select(getLoader);
-    
   }
 
   getImg(x: string): string {
     return this.swapiService.getImg(x);
+  }
+
+  openDetailsPage(url: string): void {
+    this.swapiService.openDetailsPage(url, 'films');
   }
 
 }
