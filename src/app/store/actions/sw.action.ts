@@ -2,9 +2,9 @@ import { createAction } from '@ngrx/store';
 import { ICharacters, ICharactersData } from 'src/app/models/characters.interfaces';
 import { IFilms, IFilmsData } from 'src/app/models/films.interfaces';
 import { IPlanets, IPlanetsData } from 'src/app/models/planets.interfaces';
-import { ISpeciesData } from 'src/app/models/species.interfaces';
-import { IStarshipsData } from 'src/app/models/starships.interfaces';
-import { IVehiclesData } from 'src/app/models/vehicles.interfaces';
+import { ISpecies, ISpeciesData } from 'src/app/models/species.interfaces';
+import { IStarships, IStarshipsData } from 'src/app/models/starships.interfaces';
+import { IVehicles, IVehiclesData } from 'src/app/models/vehicles.interfaces';
 
 export enum SwTypes {
     UPDATE_LOADING = '[LOADING] Update Loading',
@@ -30,6 +30,15 @@ export enum SwTypes {
     GET_CURRENT_FILM = '[FILM] Get Current Film',
     RESET_CURRENT_FILM = '[FILM] Reset Current Film',
     UPDATE_CURRENT_FILM = '[FILM] Update Current Film',
+    GET_CURRENT_SPECIE = '[SPECIE] Get Current Specie',
+    RESET_CURRENT_SPECIE = '[SPECIE] Reset Current Specie',
+    UPDATE_CURRENT_SPECIE = '[SPECIE] Update Current Specie',
+    GET_CURRENT_STARSHIP = '[STARSHIP] Get Current Starship',
+    RESET_CURRENT_STARSHIP = '[STARSHIP] Reset Current Starship',
+    UPDATE_CURRENT_STARSHIP = '[STARSHIP] Update Current Starship',
+    GET_CURRENT_VEHICLE = '[VEHICLE] Get Current Vehicle',
+    RESET_CURRENT_VEHICLE = '[VEHICLE] Reset Current Vehicle',
+    UPDATE_CURRENT_VEHICLE = '[VEHICLE] Update Current Vehicle',
 }
 
 export const updateLoading = createAction(SwTypes.UPDATE_LOADING, (loading: boolean) => ({ loading }));
@@ -86,3 +95,24 @@ export const updateCurrentFilm = createAction(SwTypes.UPDATE_CURRENT_FILM,
 (film: IFilms) => ({ film }));
 
 export const resetCurrentFilm = createAction(SwTypes.RESET_CURRENT_FILM);
+
+export const getCurrenSpecie = createAction(SwTypes.GET_CURRENT_SPECIE, (uri: string) => ({ uri }));
+
+export const updateCurrenSpecie = createAction(SwTypes.UPDATE_CURRENT_SPECIE, 
+(specie: ISpecies) => ({ specie }));
+
+export const resetCurrenSpecie = createAction(SwTypes.RESET_CURRENT_SPECIE);
+
+export const getCurrentStarship = createAction(SwTypes.GET_CURRENT_STARSHIP, (uri: string) => ({ uri }));
+
+export const updateCurrentStarship = createAction(SwTypes.UPDATE_CURRENT_STARSHIP, 
+(starship: IStarships) => ({ starship }));
+
+export const resetCurrentStarship = createAction(SwTypes.RESET_CURRENT_STARSHIP);
+
+export const getCurrentVehicle = createAction(SwTypes.GET_CURRENT_VEHICLE, (uri: string) => ({ uri }));
+
+export const updateCurrentVehicle = createAction(SwTypes.UPDATE_CURRENT_VEHICLE, 
+(vehicle: IVehicles) => ({ vehicle }));
+
+export const resetCurrentVehicle = createAction(SwTypes.RESET_CURRENT_VEHICLE);

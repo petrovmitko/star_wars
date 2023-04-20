@@ -3,9 +3,10 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { catchError, mergeMap, switchMap } from 'rxjs/operators';
 import { CommonService } from 'src/app/services/common.service';
-import { SwTypes, resetCurrentCharacter, resetCurrentFilm, resetCurrentPlanet, updateCurrentCharacter, updateCurrentFilm, updateCurrentPlanet, updateFilmsData, updatePlanetsData, updateSpeciesData, updateStarshipsData, updateVehiclesData } from 'src/app/store/actions/sw.action';
+import { SwTypes, resetCurrentCharacter, resetCurrentFilm, resetCurrentPlanet, resetCurrentStarship, resetCurrentVehicle, updateCurrentCharacter, updateCurrentFilm, updateCurrentPlanet, updateCurrentStarship, updateCurrentVehicle, updateFilmsData, updatePlanetsData, updateSpeciesData, updateStarshipsData, updateVehiclesData } from 'src/app/store/actions/sw.action';
 import { updateLoading, updateCharactersData } from 'src/app/store/actions/sw.action';
 import { IAppStore } from '../sw.store';
+import { ISpecies } from 'src/app/models/species.interfaces';
 @Injectable()
 export class SwEffects {
  
@@ -165,9 +166,71 @@ export class SwEffects {
     )
   );
 
+  getCurrentSpecie$ = createEffect(() => this.actions$.pipe(
+    ofType(SwTypes.GET_CURRENT_SPECIE),
+    switchMap(({uri}) => this.commonService.getCurrentSpecie(uri)
+      .pipe(
+        mergeMap((specie) => {
+            return [
+              resetCurrentSpecie(),
+              updateCurrentSpecie(specie),
+              updateLoading(false),
+            ];
+        }),
+        catchError((err) => {
+            return [updateLoading(false)]; 
+        }),
+      )),
+    )
+  );
+
+  getCurrentStarship$ = createEffect(() => this.actions$.pipe(
+    ofType(SwTypes.GET_CURRENT_STARSHIP),
+    switchMap(({uri}) => this.commonService.getCurrentStarship(uri)
+      .pipe(
+        mergeMap((starship) => {
+            return [
+              resetCurrentStarship(),
+              updateCurrentStarship(starship),
+              updateLoading(false),
+            ];
+        }),
+        catchError((err) => {
+            return [updateLoading(false)]; 
+        }),
+      )),
+    )
+  );
+
+  getCurrentVehicle$ = createEffect(() => this.actions$.pipe(
+    ofType(SwTypes.GET_CURRENT_VEHICLE),
+    switchMap(({uri}) => this.commonService.getCurrentVehicle(uri)
+      .pipe(
+        mergeMap((vehicle) => {
+            return [
+              resetCurrentVehicle(),
+              updateCurrentVehicle(vehicle),
+              updateLoading(false),
+            ];
+        }),
+        catchError((err) => {
+            return [updateLoading(false)]; 
+        }),
+      )),
+    )
+  );
+
   constructor(
     private actions$: Actions,
     private commonService: CommonService,
     private store: Store<{sw: IAppStore}>
   ) {}
 }
+
+function resetCurrentSpecie(): any {
+  throw new Error('Function not implemented.');
+}
+function updateCurrentSpecie(specie: ISpecies): any {
+  throw new Error('Function not implemented.');
+}
+

@@ -4,9 +4,9 @@ import { Observable } from 'rxjs';
 import { ICharacters, ICharactersData } from '../models/characters.interfaces';
 import { IFilms, IFilmsData } from '../models/films.interfaces';
 import { IPlanets, IPlanetsData } from '../models/planets.interfaces';
-import { ISpeciesData } from '../models/species.interfaces';
-import { IStarshipsData } from '../models/starships.interfaces';
-import { IVehiclesData } from '../models/vehicles.interfaces';
+import { ISpecies, ISpeciesData } from '../models/species.interfaces';
+import { IStarships, IStarshipsData } from '../models/starships.interfaces';
+import { IVehicles, IVehiclesData } from '../models/vehicles.interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -50,5 +50,17 @@ export class CommonService {
 
   getCurrentFilm(uri: string): Observable<IFilms>{
     return this.http.get<IFilms>(this.swapiUrl + uri);
+  }
+
+  getCurrentSpecie(uri: string): Observable<ISpecies>{
+    return this.http.get<ISpecies>(this.swapiUrl + uri);
+  }
+
+  getCurrentStarship(uri: string): Observable<IStarships>{
+    return this.http.get<IStarships>(this.swapiUrl + uri);
+  }
+
+  getCurrentVehicle(uri: string): Observable<IVehicles>{
+    return this.http.get<IVehicles>(this.swapiUrl + uri);
   }
 }

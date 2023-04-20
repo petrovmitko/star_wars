@@ -2,7 +2,9 @@ import { createReducer, on, State } from '@ngrx/store';
 import { updateCharactersData, updateLoading, updateFilmsData, 
 updatePlanetsData, updateSpeciesData, updateStarshipsData, 
 updateVehiclesData, updateCurrentCharacter, resetCurrentCharacter, 
-updateCurrentPlanet, resetCurrentPlanet, updateCurrentFilm, resetCurrentFilm } from '../actions/sw.action';
+updateCurrentPlanet, resetCurrentPlanet, updateCurrentFilm, resetCurrentFilm,
+updateCurrenSpecie, resetCurrenSpecie, updateCurrentStarship, resetCurrentStarship,
+updateCurrentVehicle, resetCurrentVehicle } from '../actions/sw.action';
 import { initialState } from '../sw.store';
 
 
@@ -23,5 +25,11 @@ export const swReducer = createReducer(
   on(resetCurrentPlanet, (state) => ({...state, currentPlanet: initialState.currentPlanet})),
   on(updateCurrentFilm, (state, { film }) => ({...state, currentFilm: film})),
   on(resetCurrentFilm, (state) => ({...state, currentFilm: initialState.currentFilm})),
+  on(updateCurrenSpecie, (state, { specie }) => ({...state, currentSpecie: specie})),
+  on(resetCurrenSpecie, (state) => ({...state, currentSpecie: initialState.currentSpecie})),
+  on(updateCurrentStarship, (state, { starship }) => ({...state, currentStarship: starship})),
+  on(resetCurrentStarship, (state) => ({...state, currentStarship: initialState.currentStarship})),
+  on(updateCurrentVehicle, (state, { vehicle }) => ({...state, currentVehicle: vehicle})),
+  on(resetCurrentVehicle, (state) => ({...state, currentVehicle: initialState.currentVehicle})),
 );
 

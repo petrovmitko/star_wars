@@ -22,6 +22,7 @@ export class PlanetDetailsPageComponent implements OnInit {
   data$: Observable<IPlanets> | undefined;
   loader$: Observable<boolean> | undefined;
   
+  
   constructor(
     private store: Store<{sw: IAppStore}>, 
     private router: Router,
