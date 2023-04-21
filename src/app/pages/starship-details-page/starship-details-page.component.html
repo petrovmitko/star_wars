@@ -1,1 +1,22 @@
-<p>starship-details-page works!</p>
+<div class="modal-wrapper">
+    <div class="main-info">
+        <app-rotation-loader *ngIf="(loader$ | async)"></app-rotation-loader>
+        <div *ngIf="!(loader$ | async)" class="main-info-img-box">
+            <img class="card-img" src="/assets/starships/{{uri}}.jpg" alt="character-image">
+            <div class="data">
+                <h2 [ngClass]="!neon ? getRandomInt(): neon">{{ (data$ | async)?.name }}</h2>
+                <p><span class="prop-info">Model:</span> {{ (data$ | async)?.model }}</p>
+                <p><span class="prop-info">Manufacturer:</span> {{ (data$ | async)?.manufacturer }}</p>
+                <p><span class="prop-info">Class:</span> {{ (data$ | async)?.starship_class }}</p>
+                <p><span class="prop-info">Cost:</span> {{ (data$ | async)?.cost_in_credits }} credits</p>
+                <p><span class="prop-info">Speed:</span> {{ (data$ | async)?.max_atmosphering_speed }} km/h</p>
+                <p><span class="prop-info">Length:</span> {{ (data$ | async)?.length }} m</p>
+                <p><span class="prop-info">Cargo Capacity:</span> {{ (data$ | async)?.cargo_capacity }} kg</p>
+                <p><span class="prop-info">Mimimum Crew:</span> {{ (data$ | async)?.crew }}</p>
+                <p><span class="prop-info">Passengers:</span> {{ (data$ | async)?.passengers }}</p>
+                <p><span class="prop-info">MGLT:</span> {{ (data$ | async)?.MGLT }}</p>
+            </div>
+        </div>
+        <div class="main-info-releted-data"></div>
+    </div>
+</div>

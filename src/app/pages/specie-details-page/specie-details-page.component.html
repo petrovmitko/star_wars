@@ -1,1 +1,20 @@
-<p>specie-details-page works!</p>
+<div class="modal-wrapper">
+    <div class="main-info">
+        <app-rotation-loader *ngIf="(loader$ | async)"></app-rotation-loader>
+        <div *ngIf="!(loader$ | async)" class="main-info-img-box">
+            <img class="card-img" src="/assets/species/{{uri}}.jpg" alt="character-image">
+            <div class="data">
+                <h2 [ngClass]="!neon ? getRandomInt(): neon">{{ (data$ | async)?.name }}</h2>
+                <p><span class="prop-info">Classification:</span> {{ (data$ | async)?.classification }}</p>
+                <p><span class="prop-info">Designation:</span> {{ (data$ | async)?.designation }}</p>
+                <p><span class="prop-info">Language:</span> {{ (data$ | async)?.language }}</p>
+                <p><span class="prop-info">Avg Lifespan:</span> {{ (data$ | async)?.average_lifespan }} years</p>
+                <p><span class="prop-info">Avg Height:</span> {{ (data$ | async)?.average_height }} cm</p>
+                <p><span class="prop-info">Hair Color(s):</span> {{ (data$ | async)?.hair_colors }}</p>
+                <p><span class="prop-info">Skin Color(s):</span> {{ (data$ | async)?.skin_colors }}</p>
+                <p><span class="prop-info">Eye Color(s):</span> {{ (data$ | async)?.eye_colors }}</p>
+            </div>
+        </div>
+        <div class="main-info-releted-data"></div>
+    </div>
+</div>

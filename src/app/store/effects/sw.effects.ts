@@ -3,7 +3,9 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { catchError, mergeMap, switchMap } from 'rxjs/operators';
 import { CommonService } from 'src/app/services/common.service';
-import { SwTypes, resetCurrentCharacter, resetCurrentFilm, resetCurrentPlanet, resetCurrentStarship, resetCurrentVehicle, updateCurrentCharacter, updateCurrentFilm, updateCurrentPlanet, updateCurrentStarship, updateCurrentVehicle, updateFilmsData, updatePlanetsData, updateSpeciesData, updateStarshipsData, updateVehiclesData } from 'src/app/store/actions/sw.action';
+import { SwTypes, resetCurrentCharacter, resetCurrentFilm, resetCurrentPlanet, resetCurrentStarship, resetCurrentVehicle, 
+updateCurrenSpecie, updateCurrentCharacter, updateCurrentFilm, updateCurrentPlanet, updateCurrentStarship, 
+updateCurrentVehicle, updateFilmsData, updatePlanetsData, updateSpeciesData, updateStarshipsData, updateVehiclesData } from 'src/app/store/actions/sw.action';
 import { updateLoading, updateCharactersData } from 'src/app/store/actions/sw.action';
 import { IAppStore } from '../sw.store';
 import { ISpecies } from 'src/app/models/species.interfaces';
@@ -172,8 +174,8 @@ export class SwEffects {
       .pipe(
         mergeMap((specie) => {
             return [
-              resetCurrentSpecie(),
-              updateCurrentSpecie(specie),
+              resetCurrentVehicle(),
+              updateCurrenSpecie(specie),
               updateLoading(false),
             ];
         }),
@@ -227,10 +229,4 @@ export class SwEffects {
   ) {}
 }
 
-function resetCurrentSpecie(): any {
-  throw new Error('Function not implemented.');
-}
-function updateCurrentSpecie(specie: ISpecies): any {
-  throw new Error('Function not implemented.');
-}
 
