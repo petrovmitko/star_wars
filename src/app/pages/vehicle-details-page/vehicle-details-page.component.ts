@@ -14,9 +14,6 @@ import { IAppStore, getLoader, selectVehicleData } from 'src/app/store/sw.store'
 })
 export class VehicleDetailsPageComponent implements OnInit {
   uri?: string;
-
-  neon = '';
-  neonArr = ['neon-red', 'neon-blue', 'neon-green', 'neon-purple']
   
   sw$: Observable<IAppStore>;
   data$: Observable<IVehicles> | undefined;
@@ -40,8 +37,6 @@ export class VehicleDetailsPageComponent implements OnInit {
   }
 
   getRandomInt(): string {
-    const randomNum = Math.floor(Math.random() * 4);
-    this.neon = this.neonArr[randomNum];
-    return this.neon;
+    return this.swapiService.getRandomInt();
   }
 }

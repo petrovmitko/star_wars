@@ -4,7 +4,7 @@
         <div *ngIf="!(loader$ | async)" class="main-info-img-box">
             <img class="card-img" src="/assets/characters/{{uri}}.jpg" alt="character-image">
             <div class="data">
-                <h2 [ngClass]="!neon ? getRandomInt(): neon">{{ (data$ | async)?.name }}</h2>
+                <h2 [ngClass]="getRandomInt()">{{ (data$ | async)?.name }}</h2>
                 <p><span class="prop-info">Birth Year:</span> {{ (data$ | async)?.birth_year }}</p>
                 <p><span class="prop-info">Gender:</span> {{ (data$ | async)?.gender }}</p>
                 <p><span class="prop-info">Height:</span> {{ (data$ | async)?.height }} cm</p>
@@ -14,6 +14,10 @@
                 <p> 
                     <span class="prop-info">Homeworld:</span>
                     <span class="homeworld-link" (click)="visitPlanet()">{{ ' ' + (planet$ | async)?.name}}</span>
+                </p>
+                <p> 
+                    <span class="prop-info">Species:</span>
+                    <span class="homeworld-link">{{ ' ' + (planet$ | async)?.name}}</span>
                 </p>
             </div>
         </div>

@@ -14,9 +14,6 @@ import { IAppStore, getLoader, selectSpecieData } from 'src/app/store/sw.store';
 })
 export class SpecieDetailsPageComponent implements OnInit {
   uri?: string;
-
-  neon = '';
-  neonArr = ['neon-red', 'neon-blue', 'neon-green', 'neon-purple']
   
   sw$: Observable<IAppStore>;
   data$: Observable<ISpecies> | undefined;
@@ -42,11 +39,8 @@ export class SpecieDetailsPageComponent implements OnInit {
     })
   }
 
-
   getRandomInt(): string {
-    const randomNum = Math.floor(Math.random() * 4);
-    this.neon = this.neonArr[randomNum];
-    return this.neon;
+    return this.swapiService.getRandomInt();
   }
 
 }

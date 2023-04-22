@@ -14,14 +14,10 @@ import { IAppStore, getLoader, selectPlanetData } from 'src/app/store/sw.store';
 })
 export class PlanetDetailsPageComponent implements OnInit {
   uri?: string;
-
-  neon = '';
-  neonArr = ['neon-red', 'neon-blue', 'neon-green', 'neon-purple']
   
   sw$: Observable<IAppStore>;
   data$: Observable<IPlanets> | undefined;
   loader$: Observable<boolean> | undefined;
-  
   
   constructor(
     private store: Store<{sw: IAppStore}>, 
@@ -41,9 +37,7 @@ export class PlanetDetailsPageComponent implements OnInit {
   }
 
   getRandomInt(): string {
-    const randomNum = Math.floor(Math.random() * 4);
-    this.neon = this.neonArr[randomNum];
-    return this.neon;
+    return this.swapiService.getRandomInt();
   }
   
 }

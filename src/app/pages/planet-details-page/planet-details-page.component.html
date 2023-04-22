@@ -4,7 +4,7 @@
         <div *ngIf="!(loader$ | async)" class="main-info-img-box">
             <img class="card-img" src="/assets/planets/{{uri}}.jpg" alt="character-image">
             <div class="data">
-                <h2 [ngClass]="!neon ? getRandomInt(): neon">{{ (data$ | async)?.name }}</h2>
+                <h2 [ngClass]="getRandomInt()">{{ (data$ | async)?.name }}</h2>
                 <p><span class="prop-info">Population:</span> {{ (data$ | async)?.population }}</p>
                 <p><span class="prop-info">Rotation Period:</span> {{ (data$ | async)?.rotation_period }} hours</p>
                 <p><span class="prop-info">Orbital Period:</span> {{ (data$ | async)?.orbital_period }} days</p>

@@ -15,9 +15,6 @@ import { IAppStore, getLoader, selectStarshipData } from 'src/app/store/sw.store
 export class StarshipDetailsPageComponent implements OnInit {
   uri?: string;
 
-  neon = '';
-  neonArr = ['neon-red', 'neon-blue', 'neon-green', 'neon-purple']
-  
   sw$: Observable<IAppStore>;
   data$: Observable<IStarships> | undefined;
   loader$: Observable<boolean> | undefined;
@@ -38,8 +35,6 @@ export class StarshipDetailsPageComponent implements OnInit {
   }
 
   getRandomInt(): string {
-    const randomNum = Math.floor(Math.random() * 4);
-    this.neon = this.neonArr[randomNum];
-    return this.neon;
+    return this.swapiService.getRandomInt();
   }
 }

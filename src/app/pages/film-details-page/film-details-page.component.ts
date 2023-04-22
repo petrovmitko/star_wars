@@ -14,9 +14,6 @@ import { IAppStore, getLoader, selectFilmData } from 'src/app/store/sw.store';
 })
 export class FilmDetailsPageComponent implements OnInit {
   uri?: string;
-
-  neon = '';
-  neonArr = ['neon-red', 'neon-blue', 'neon-green', 'neon-purple']
   
   sw$: Observable<IAppStore>;
   data$: Observable<IFilms> | undefined;
@@ -40,9 +37,7 @@ export class FilmDetailsPageComponent implements OnInit {
   }
 
   getRandomInt(): string {
-    const randomNum = Math.floor(Math.random() * 4);
-    this.neon = this.neonArr[randomNum];
-    return this.neon;
+    return this.swapiService.getRandomInt();
   }
 
   getReleaseDate(x: string | undefined): string {
