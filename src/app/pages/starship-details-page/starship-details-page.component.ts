@@ -13,7 +13,9 @@ import { IAppStore, getLoader, selectStarshipData } from 'src/app/store/sw.store
   styleUrls: ['../character-details-page/character-details-page.component.scss']
 })
 export class StarshipDetailsPageComponent implements OnInit {
+  
   uri?: string;
+  neon = '';
 
   sw$: Observable<IAppStore>;
   data$: Observable<IStarships> | undefined;
@@ -26,15 +28,12 @@ export class StarshipDetailsPageComponent implements OnInit {
   ) { this.sw$ = store.select('sw') }
 
   ngOnInit(): void {
+    this.neon = this.swapiService.getNeonClass();
     this.uri = this.router.url.split('/').pop();
     this.store.dispatch(updateLoading(true));
     this.store.dispatch(getCurrentStarship(`starships/${this.uri}`));
 
     this.data$ = this.store.select(selectStarshipData);
     this.loader$ = this.store.select(getLoader);
-  }
-
-  getRandomInt(): string {
-    return this.swapiService.getRandomInt();
   }
 }

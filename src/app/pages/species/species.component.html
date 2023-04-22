@@ -12,7 +12,7 @@
         <div class="cards-box">
             <div class="card" *ngFor="let specie of results$ | async" (click)="openDetailsPage(specie.url)">
                 <div class="img">
-                    <img src="assets/species/{{getImg(specie.url)}}.jpg" alt="">
+                    <img src="assets/species/{{getId(specie.url)}}.jpg" alt="">
                 </div>
                 <div class="info">
                     <h3>{{specie.name}}</h3>

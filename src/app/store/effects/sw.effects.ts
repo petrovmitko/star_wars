@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { catchError, mergeMap, switchMap } from 'rxjs/operators';
 import { CommonService } from 'src/app/services/common.service';
 import { SwTypes, resetCurrentCharacter, resetCurrentFilm, resetCurrentPlanet, resetCurrentStarship, resetCurrentVehicle, 
-updateCurrenSpecie, updateCurrentCharacter, updateCurrentFilm, updateCurrentPlanet, updateCurrentStarship, 
+updateCurrentSpecie, updateCurrentCharacter, updateCurrentFilm, updateCurrentPlanet, updateCurrentStarship, 
 updateCurrentVehicle, updateFilmsData, updatePlanetsData, updateSpeciesData, updateStarshipsData, updateVehiclesData } from 'src/app/store/actions/sw.action';
 import { updateLoading, updateCharactersData } from 'src/app/store/actions/sw.action';
 import { IAppStore } from '../sw.store';
@@ -175,7 +175,7 @@ export class SwEffects {
         mergeMap((specie) => {
             return [
               resetCurrentVehicle(),
-              updateCurrenSpecie(specie),
+              updateCurrentSpecie(specie),
               updateLoading(false),
             ];
         }),

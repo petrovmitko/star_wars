@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { ISpecies } from 'src/app/models/species.interfaces';
 import { SwapiService } from 'src/app/services/swapi.service';
-import { updateLoading, getCurrenSpecie } from 'src/app/store/actions/sw.action';
+import { updateLoading, getCurrentSpecie } from 'src/app/store/actions/sw.action';
 import { IAppStore, getLoader, selectSpecieData } from 'src/app/store/sw.store';
 
 @Component({
@@ -13,8 +13,10 @@ import { IAppStore, getLoader, selectSpecieData } from 'src/app/store/sw.store';
   styleUrls: ['../character-details-page/character-details-page.component.scss']
 })
 export class SpecieDetailsPageComponent implements OnInit {
-  uri?: string;
   
+  uri?: string;
+  neon = '';
+
   sw$: Observable<IAppStore>;
   data$: Observable<ISpecies> | undefined;
   loader$: Observable<boolean> | undefined;
@@ -28,19 +30,16 @@ export class SpecieDetailsPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.neon = this.swapiService.getNeonClass();
     this.uri = this.router.url.split('/').pop();
     this.store.dispatch(updateLoading(true));
-    this.store.dispatch(getCurrenSpecie(`species/${this.uri}`));
+    this.store.dispatch(getCurrentSpecie(`species/${this.uri}`));
 
     this.data$ = this.store.select(selectSpecieData);
     this.loader$ = this.store.select(getLoader);
     this.data$.subscribe(d => {
       console.log(d)
     })
-  }
-
-  getRandomInt(): string {
-    return this.swapiService.getRandomInt();
   }
 
 }

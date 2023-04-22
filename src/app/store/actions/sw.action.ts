@@ -96,12 +96,12 @@ export const updateCurrentFilm = createAction(SwTypes.UPDATE_CURRENT_FILM,
 
 export const resetCurrentFilm = createAction(SwTypes.RESET_CURRENT_FILM);
 
-export const getCurrenSpecie = createAction(SwTypes.GET_CURRENT_SPECIE, (uri: string) => ({ uri }));
+export const getCurrentSpecie = createAction(SwTypes.GET_CURRENT_SPECIE, (uri: string) => ({ uri }));
 
-export const updateCurrenSpecie = createAction(SwTypes.UPDATE_CURRENT_SPECIE, 
+export const updateCurrentSpecie = createAction(SwTypes.UPDATE_CURRENT_SPECIE, 
 (specie: ISpecies) => ({ specie }));
 
-export const resetCurrenSpecie = createAction(SwTypes.RESET_CURRENT_SPECIE);
+export const resetCurrentSpecie = createAction(SwTypes.RESET_CURRENT_SPECIE);
 
 export const getCurrentStarship = createAction(SwTypes.GET_CURRENT_STARSHIP, (uri: string) => ({ uri }));
 

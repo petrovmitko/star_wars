@@ -13,8 +13,10 @@ import { IAppStore, getLoader, selectFilmData } from 'src/app/store/sw.store';
   styleUrls: ['../character-details-page/character-details-page.component.scss']
 })
 export class FilmDetailsPageComponent implements OnInit {
-  uri?: string;
   
+  uri?: string;
+  neon = '';
+
   sw$: Observable<IAppStore>;
   data$: Observable<IFilms> | undefined;
   loader$: Observable<boolean> | undefined;
@@ -28,16 +30,13 @@ export class FilmDetailsPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.neon = this.swapiService.getNeonClass();
     this.uri = this.router.url.split('/').pop();
     this.store.dispatch(updateLoading(true));
     this.store.dispatch(getCurrentFilm(`films/${this.uri}`));
 
     this.data$ = this.store.select(selectFilmData);
     this.loader$ = this.store.select(getLoader);
-  }
-
-  getRandomInt(): string {
-    return this.swapiService.getRandomInt();
   }
 
   getReleaseDate(x: string | undefined): string {

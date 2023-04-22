@@ -12,7 +12,7 @@
         <div class="cards-box">
             <div class="card" *ngFor="let vehicle of results$ | async" (click)="openDetailsPage(vehicle.url)">
                 <div class="img">
-                    <img class="planet-card-img" src="assets/vehicles/{{getImg(vehicle.url)}}.jpg" alt="">
+                    <img class="planet-card-img" src="assets/vehicles/{{getId(vehicle.url)}}.jpg" alt="">
                 </div>
                 <div class="info">
                     <h3>{{vehicle.name}}</h3>

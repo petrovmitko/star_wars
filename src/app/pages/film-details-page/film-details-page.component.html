@@ -4,7 +4,7 @@
         <div *ngIf="!(loader$ | async)" class="main-info-img-box">
             <img class="card-img" src="/assets/films/{{uri}}.jpg" alt="character-image">
             <div class="data">
-                <h2 [ngClass]="getRandomInt()">{{ (data$ | async)?.title }}</h2>
+                <h2 [ngClass]="neon">{{ (data$ | async)?.title }}</h2>
                 <p><span class="prop-info">Date Created:</span> {{ getReleaseDate((data$ | async)?.release_date) }}</p>
                 <p><span class="prop-info">Director:</span> {{ (data$ | async)?.director }}</p>
                 <p><span class="prop-info">Producer(s):</span> {{ (data$ | async)?.producer }}</p>

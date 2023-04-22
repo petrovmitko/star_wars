@@ -13,8 +13,10 @@ import { IAppStore, getLoader, selectPlanetData } from 'src/app/store/sw.store';
   styleUrls: ['../character-details-page/character-details-page.component.scss']
 })
 export class PlanetDetailsPageComponent implements OnInit {
-  uri?: string;
   
+  uri?: string;
+  neon = '';
+
   sw$: Observable<IAppStore>;
   data$: Observable<IPlanets> | undefined;
   loader$: Observable<boolean> | undefined;
@@ -28,16 +30,13 @@ export class PlanetDetailsPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.neon = this.swapiService.getNeonClass();
     this.uri = this.router.url.split('/').pop();
     this.store.dispatch(updateLoading(true));
     this.store.dispatch(getCurrentPlanet(`planets/${this.uri}`));
 
     this.data$ = this.store.select(selectPlanetData);
     this.loader$ = this.store.select(getLoader);
-  }
-
-  getRandomInt(): string {
-    return this.swapiService.getRandomInt();
   }
   
 }

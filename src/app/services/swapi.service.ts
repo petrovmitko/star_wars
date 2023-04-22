@@ -10,17 +10,17 @@ export class SwapiService {
 
   constructor(private router: Router) { }
 
-  getImg(x: string): string {
+  getId(x: string): string {
     let strArr = x.split('/');
     return strArr[strArr.length - 2];
   }
 
   openDetailsPage(url: string, component: string): void {
-    const id = this.getImg(url);
+    const id = this.getId(url);
     this.router.navigate([`${component}/${id}`]);
   }
 
-  getRandomInt(): string {
+  getNeonClass(): string {
     const randomNum = Math.floor(Math.random() * 4);
     return this.neonArr[randomNum];
   }

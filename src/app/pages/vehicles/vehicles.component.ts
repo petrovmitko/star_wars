@@ -32,8 +32,8 @@ export class VehiclesComponent implements OnInit {
     this.loader$ = this.store.select(getLoader);
   }
 
-  getImg(x: string): string {
-    return this.swapiService.getImg(x);
+  getId(x: string): string {
+    return this.swapiService.getId(x);
   }
 
   goToNextPage(): void {

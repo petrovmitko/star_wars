@@ -13,8 +13,10 @@ import { IAppStore, getLoader, selectVehicleData } from 'src/app/store/sw.store'
   styleUrls: ['../character-details-page/character-details-page.component.scss']
 })
 export class VehicleDetailsPageComponent implements OnInit {
-  uri?: string;
   
+  uri?: string;
+  neon = '';
+
   sw$: Observable<IAppStore>;
   data$: Observable<IVehicles> | undefined;
   loader$: Observable<boolean> | undefined;
@@ -28,6 +30,7 @@ export class VehicleDetailsPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.neon = this.swapiService.getNeonClass();
     this.uri = this.router.url.split('/').pop();
     this.store.dispatch(updateLoading(true));
     this.store.dispatch(getCurrentVehicle(`vehicles/${this.uri}`));
@@ -36,7 +39,4 @@ export class VehicleDetailsPageComponent implements OnInit {
     this.loader$ = this.store.select(getLoader);
   }
 
-  getRandomInt(): string {
-    return this.swapiService.getRandomInt();
-  }
 }

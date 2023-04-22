@@ -4,7 +4,7 @@
         <div class="cards-box">
             <div class="card" *ngFor="let film of results$ | async" (click)="openDetailsPage(film.url)">
                 <div class="img">
-                    <img src="assets/films/{{getImg(film.url)}}.jpg" alt="">
+                    <img src="assets/films/{{getId(film.url)}}.jpg" alt="">
                 </div>
                 <div class="info">
                     <h3>{{film.title}}</h3>
