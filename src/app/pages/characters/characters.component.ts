@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { updateLoading, getCharactersData } from 'src/app/store/actions/sw.action';
-import { IAppStore, selectCharacters, getLoader } from 'src/app/store/sw.store';
+import { updateLoading, getCharactersData, updateCharactersPage } from 'src/app/store/actions/sw.action';
+import { IAppStore, selectCharacters, getLoader, getCharactersPage } from 'src/app/store/sw.store';
 import { ICharacters } from 'src/app/models/characters.interfaces';
 import { SwapiService } from 'src/app/services/swapi.service';
 import { Router } from '@angular/router';
@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class CharactersComponent implements OnInit {
   page = 1;
-  
+
   sw$: Observable<IAppStore>;
   results$: Observable<ICharacters[]> | undefined;
   loader$ : Observable<boolean> | undefined;
@@ -29,6 +29,7 @@ export class CharactersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.store.select(getCharactersPage).subscribe((x: number) => this.page = x);
     this.store.dispatch(updateLoading(true));
     this.store.dispatch(getCharactersData(`people?page=${this.page}`));
 
@@ -43,12 +44,14 @@ export class CharactersComponent implements OnInit {
   goToNextPage(): void {
     this.store.dispatch(updateLoading(true));
     this.page++;
+    this.store.dispatch(updateCharactersPage(this.page));
     this.store.dispatch(getCharactersData(`people?page=${this.page}`));
   }
   
   goToPrevPage(): void {
     this.store.dispatch(updateLoading(true));
     this.page--;
+    this.store.dispatch(updateCharactersPage(this.page));
     this.store.dispatch(getCharactersData(`people?page=${this.page}`));
   }
 
@@ -56,6 +59,7 @@ export class CharactersComponent implements OnInit {
     if(page === this.page) return;
     this.store.dispatch(updateLoading(true));
     this.page = page;
+    this.store.dispatch(updateCharactersPage(this.page));
     this.store.dispatch(getCharactersData(`people?page=${this.page}`));
   }
 

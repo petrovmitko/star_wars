@@ -19,7 +19,7 @@
                 font-size: 20px;
                 color: $white;
                 margin-left: 20px;
-                font-family: 'karla';
+                font-family: $karla;
                 h2 {
                     margin-bottom: 20px;
                     color: #fff;
@@ -56,6 +56,27 @@
                 .neon-blue {
                     @include neon-blue;
                 }
+            }
+        }
+    }
+    .related-data {
+        width: 100%;
+        height: 300px;
+        display: flex;
+        justify-content: space-between;
+        padding-top: 30px;
+        &-card {
+            background: $white;
+            min-height: 200px;
+            width: 30%;
+            border-radius: 4px;
+            .title {
+                color: $black;
+                font-family: $karla;
+                text-align: center;
+                padding: 14px;
+                font-weight: bold;
+                border-bottom: 1px solid;
             }
         }
     }

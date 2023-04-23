@@ -8,7 +8,7 @@
         font-size: 20px;
         color: $white;
         margin-left: 10px;
-        font-family: 'karla';
+        font-family: $karla;
         text-shadow:
     0 0 5px red, 0 0 4px $turquoise, 
     0 0 4px $turquoise, 0 0 4px $turquoise, 
@@ -26,7 +26,8 @@
             right: -14px;
         }
     }
-    a {
-        text-decoration: none;
+    p {
+        padding-left: 10px;
+        cursor: pointer;
     }
 }

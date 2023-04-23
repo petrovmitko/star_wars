@@ -21,6 +21,11 @@ export interface IAppStore {
   currentSpecie: ISpecies;
   currentStarship: IStarships;
   currentVehicle: IVehicles;
+  charactersPage: number;
+  speciesPage: number;
+  starshipsPage: number;
+  vehiclesPage: number;
+  planetsPage: number;
 }
 
 export const initialState: IAppStore = { 
@@ -165,7 +170,12 @@ export const initialState: IAppStore = {
     created: '',
     edited: '',
     url: '',
-  }
+  },
+  charactersPage: 1,
+  speciesPage: 1,
+  starshipsPage: 1,
+  vehiclesPage: 1,
+  planetsPage: 1,
 };
 
 export const getState = (store: Store<IAppStore>): IAppStore => { 
@@ -194,3 +204,9 @@ export const selectSpecieData = createSelector(swState, (state: IAppStore) => st
 export const selectStarshipData = createSelector(swState, (state: IAppStore) => state.currentStarship); 
 export const selectVehicleData = createSelector(swState, (state: IAppStore) => state.currentVehicle); 
 export const getLoader = createSelector(swState, (state: IAppStore) => state.loading); 
+
+export const getCharactersPage = createSelector(swState, (state: IAppStore) => state.charactersPage); 
+export const getSpeciesPage = createSelector(swState, (state: IAppStore) => state.speciesPage); 
+export const getStarshipsPage = createSelector(swState, (state: IAppStore) => state.starshipsPage);
+export const getVehiclesPage = createSelector(swState, (state: IAppStore) => state.vehiclesPage);
+export const getPlanetsPage = createSelector(swState, (state: IAppStore) => state.planetsPage);   

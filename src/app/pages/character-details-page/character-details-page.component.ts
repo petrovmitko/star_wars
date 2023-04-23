@@ -18,7 +18,8 @@ export class CharacterDetailsPageComponent implements OnInit {
 
   uri?: string;
   neon = '';
-
+  relatedData = ['Films', 'Vehicles', 'Starships'];
+  
   sw$: Observable<IAppStore>;
   data$?: Observable<ICharacters>;
   loader$?: Observable<boolean>;
@@ -43,6 +44,7 @@ export class CharacterDetailsPageComponent implements OnInit {
     this.planet$ = this.store.select(selectPlanetData);
     this.specie$ = this.store.select(selectSpecieData);
     this.loader$ = this.store.select(getLoader);
+    
     this.data$.pipe(filter(x => x.name !== undefined)).subscribe((character: ICharacters) => {
       if(character) {
         const planetUri = this.swapiService.getId(character.homeworld);

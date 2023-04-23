@@ -4,7 +4,7 @@ updatePlanetsData, updateSpeciesData, updateStarshipsData,
 updateVehiclesData, updateCurrentCharacter, resetCurrentCharacter, 
 updateCurrentPlanet, resetCurrentPlanet, updateCurrentFilm, resetCurrentFilm,
 updateCurrentSpecie, resetCurrentSpecie, updateCurrentStarship, resetCurrentStarship,
-updateCurrentVehicle, resetCurrentVehicle } from '../actions/sw.action';
+updateCurrentVehicle, resetCurrentVehicle, updateCharactersPage, updateSpeciesPage, updateStarshipsPage, updateVehiclesPage, updatePlanetsPage } from '../actions/sw.action';
 import { initialState } from '../sw.store';
 
 
@@ -31,5 +31,10 @@ export const swReducer = createReducer(
   on(resetCurrentStarship, (state) => ({...state, currentStarship: initialState.currentStarship})),
   on(updateCurrentVehicle, (state, { vehicle }) => ({...state, currentVehicle: vehicle})),
   on(resetCurrentVehicle, (state) => ({...state, currentVehicle: initialState.currentVehicle})),
+  on(updateCharactersPage, (state, { page }) => ({...state, charactersPage: page})),
+  on(updateSpeciesPage, (state, { page }) => ({...state, speciesPage: page})),
+  on(updateStarshipsPage, (state, { page }) => ({...state, starshipsPage: page})),
+  on(updateVehiclesPage, (state, { page }) => ({...state, vehiclesPage: page})),
+  on(updatePlanetsPage, (state, { page }) => ({...state, planetsPage: page})),
 );
 

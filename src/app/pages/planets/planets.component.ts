@@ -4,8 +4,8 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IPlanets } from 'src/app/models/planets.interfaces';
 import { SwapiService } from 'src/app/services/swapi.service';
-import { getPlanetsData, updateLoading } from 'src/app/store/actions/sw.action';
-import { IAppStore, getLoader, selectPlanets } from 'src/app/store/sw.store';
+import { getPlanetsData, updateLoading, updatePlanetsPage } from 'src/app/store/actions/sw.action';
+import { IAppStore, getLoader, getPlanetsPage, selectPlanets } from 'src/app/store/sw.store';
 
 @Component({
   selector: 'app-planets',
@@ -29,8 +29,9 @@ export class PlanetsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.store.select(getPlanetsPage).subscribe((x: number) => this.page = x);
     this.store.dispatch(updateLoading(true));
-    this.store.dispatch(getPlanetsData(`planets?page=1`));
+    this.store.dispatch(getPlanetsData(`planets?page=${this.page}`));
 
     this.results$ = this.store.select(selectPlanets);
     this.loader$ = this.store.select(getLoader);
@@ -43,12 +44,14 @@ export class PlanetsComponent implements OnInit {
   goToNextPage(): void {
     this.store.dispatch(updateLoading(true));
     this.page++;
+    this.store.dispatch(updatePlanetsPage(this.page));
     this.store.dispatch(getPlanetsData(`planets?page=${this.page}`));
   }
   
   goToPrevPage(): void {
     this.store.dispatch(updateLoading(true));
     this.page--;
+    this.store.dispatch(updatePlanetsPage(this.page));
     this.store.dispatch(getPlanetsData(`planets?page=${this.page}`));
   }
 
@@ -56,6 +59,7 @@ export class PlanetsComponent implements OnInit {
     if(page === this.page) return;
     this.store.dispatch(updateLoading(true));
     this.page = page;
+    this.store.dispatch(updatePlanetsPage(this.page));
     this.store.dispatch(getPlanetsData(`planets?page=${this.page}`));
   }
 

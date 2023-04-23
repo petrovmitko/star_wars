@@ -3,8 +3,8 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IVehicles } from 'src/app/models/vehicles.interfaces';
 import { SwapiService } from 'src/app/services/swapi.service';
-import { getVehiclesData, updateLoading } from 'src/app/store/actions/sw.action';
-import { IAppStore, getLoader, selectVehicles } from 'src/app/store/sw.store';
+import { getVehiclesData, updateLoading, updateVehiclesPage } from 'src/app/store/actions/sw.action';
+import { IAppStore, getLoader, getVehiclesPage, selectVehicles } from 'src/app/store/sw.store';
 
 @Component({
   selector: 'app-vehicles',
@@ -25,8 +25,9 @@ export class VehiclesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.store.select(getVehiclesPage).subscribe((x: number) => this.page = x);
     this.store.dispatch(updateLoading(true));
-    this.store.dispatch(getVehiclesData(`vehicles?page=1`));
+    this.store.dispatch(getVehiclesData(`vehicles?page=${this.page}`));
 
     this.results$ = this.store.select(selectVehicles);
     this.loader$ = this.store.select(getLoader);
@@ -39,12 +40,14 @@ export class VehiclesComponent implements OnInit {
   goToNextPage(): void {
     this.store.dispatch(updateLoading(true));
     this.page++;
+    this.store.dispatch(updateVehiclesPage(this.page));
     this.store.dispatch(getVehiclesData(`vehicles?page=${this.page}`));
   }
   
   goToPrevPage(): void {
     this.store.dispatch(updateLoading(true));
     this.page--;
+    this.store.dispatch(updateVehiclesPage(this.page));
     this.store.dispatch(getVehiclesData(`vehicles?page=${this.page}`));
   }
 
@@ -52,6 +55,7 @@ export class VehiclesComponent implements OnInit {
     if(page === this.page) return;
     this.store.dispatch(updateLoading(true));
     this.page = page;
+    this.store.dispatch(updateVehiclesPage(this.page));
     this.store.dispatch(getVehiclesData(`vehicles?page=${this.page}`));
   }
 

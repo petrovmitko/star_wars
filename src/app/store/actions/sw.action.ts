@@ -39,6 +39,13 @@ export enum SwTypes {
     GET_CURRENT_VEHICLE = '[VEHICLE] Get Current Vehicle',
     RESET_CURRENT_VEHICLE = '[VEHICLE] Reset Current Vehicle',
     UPDATE_CURRENT_VEHICLE = '[VEHICLE] Update Current Vehicle',
+    // paging
+    UPDATE_CHARACTERS_PAGE = '[CHARACTERS] Update Characters Page',
+    UPDATE_SPECIES_PAGE = '[SPECIES] Update Species Page',
+    UPDATE_STARSHIPS_PAGE = '[STARSHIPS] Update Starships Page',
+    UPDATE_VEHICLES_PAGE = '[VEHICLES] Update Vehicles Page',
+    UPDATE_PLANETS_PAGE = '[PLANETS] Update Planets Page',
+    
 }
 
 export const updateLoading = createAction(SwTypes.UPDATE_LOADING, (loading: boolean) => ({ loading }));
@@ -116,3 +123,9 @@ export const updateCurrentVehicle = createAction(SwTypes.UPDATE_CURRENT_VEHICLE,
 (vehicle: IVehicles) => ({ vehicle }));
 
 export const resetCurrentVehicle = createAction(SwTypes.RESET_CURRENT_VEHICLE);
+
+export const updateCharactersPage = createAction(SwTypes.UPDATE_CHARACTERS_PAGE, (page: number) => ({ page }));
+export const updateSpeciesPage = createAction(SwTypes.UPDATE_SPECIES_PAGE, (page: number) => ({ page }));
+export const updateStarshipsPage = createAction(SwTypes.UPDATE_STARSHIPS_PAGE, (page: number) => ({ page }));
+export const updateVehiclesPage = createAction(SwTypes.UPDATE_VEHICLES_PAGE, (page: number) => ({ page }));
+export const updatePlanetsPage = createAction(SwTypes.UPDATE_PLANETS_PAGE, (page: number) => ({ page }));

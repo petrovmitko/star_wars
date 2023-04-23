@@ -3,8 +3,8 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { ISpecies } from 'src/app/models/species.interfaces';
 import { SwapiService } from 'src/app/services/swapi.service';
-import { getSpeciesData, updateLoading } from 'src/app/store/actions/sw.action';
-import { IAppStore, getLoader, selectSpecies } from 'src/app/store/sw.store';
+import { getSpeciesData, updateLoading, updateSpeciesPage } from 'src/app/store/actions/sw.action';
+import { IAppStore, getLoader, getSpeciesPage, selectSpecies } from 'src/app/store/sw.store';
 
 @Component({
   selector: 'app-species',
@@ -25,6 +25,7 @@ export class SpeciesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.store.select(getSpeciesPage).subscribe((x: number) => this.page = x);
     this.store.dispatch(updateLoading(true));
     this.store.dispatch(getSpeciesData(`species?page=${this.page}`));
 
@@ -39,12 +40,14 @@ export class SpeciesComponent implements OnInit {
   goToNextPage(): void {
     this.store.dispatch(updateLoading(true));
     this.page++;
+    this.store.dispatch(updateSpeciesPage(this.page));
     this.store.dispatch(getSpeciesData(`species?page=${this.page}`));
   }
   
   goToPrevPage(): void {
     this.store.dispatch(updateLoading(true));
     this.page--;
+    this.store.dispatch(updateSpeciesPage(this.page));
     this.store.dispatch(getSpeciesData(`species?page=${this.page}`));
   }
 
@@ -52,6 +55,7 @@ export class SpeciesComponent implements OnInit {
     if(page === this.page) return;
     this.store.dispatch(updateLoading(true));
     this.page = page;
+    this.store.dispatch(updateSpeciesPage(this.page));
     this.store.dispatch(getSpeciesData(`species?page=${this.page}`));
   }
 
