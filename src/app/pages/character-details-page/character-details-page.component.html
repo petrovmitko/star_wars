@@ -24,8 +24,32 @@
         <div class="main-info-releted-data"></div>
     </div>
     <div class="related-data">
-        <div *ngFor="let item of relatedData" class="related-data-card">
-            <div class="title">Related {{item}}</div>
+        <div *ngIf="relatedFilms.length" class="related-data-card">
+            <div class="title">Related Films</div>
+            <ul>
+                <li *ngFor="let item of relatedFilms">
+                    <img class="rel-card-img" [src]="'/assets/films/' + getId(item.url) + '.jpg'" alt="">
+                    <p>{{item.title}}</p>
+                </li>
+            </ul>
+        </div>
+        <div *ngIf="relatedStarships.length" class="related-data-card">
+            <div class="title">Related Starships</div>
+            <ul>
+                <li *ngFor="let item of relatedStarships">
+                    <img class="rel-card-img" [src]="'/assets/starships/' + getId(item.url) + '.jpg'" alt="">
+                    <p>{{item.name}}</p>
+                </li>
+            </ul>
+        </div>
+        <div *ngIf="relatedVehicles.length" class="related-data-card">
+            <div class="title">Related Vehicles</div>
+            <ul>
+                <li *ngFor="let item of relatedVehicles">
+                    <img class="rel-card-img" [src]="'/assets/vehicles/' + getId(item.url) + '.jpg'" alt="">
+                    <p>{{item.name}}</p>
+                </li>
+            </ul>
         </div>
     </div>
 </div>

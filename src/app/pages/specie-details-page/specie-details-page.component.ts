@@ -37,9 +37,6 @@ export class SpecieDetailsPageComponent implements OnInit {
 
     this.data$ = this.store.select(selectSpecieData);
     this.loader$ = this.store.select(getLoader);
-    this.data$.subscribe(d => {
-      console.log(d)
-    })
   }
 
 }
