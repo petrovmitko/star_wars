@@ -4,8 +4,10 @@ updatePlanetsData, updateSpeciesData, updateStarshipsData,
 updateVehiclesData, updateCurrentCharacter, resetCurrentCharacter, 
 updateCurrentPlanet, resetCurrentPlanet, updateCurrentFilm, resetCurrentFilm,
 updateCurrentSpecie, resetCurrentSpecie, updateCurrentStarship, resetCurrentStarship,
-updateCurrentVehicle, resetCurrentVehicle, updateCharactersPage, updateSpeciesPage, updateStarshipsPage, updateVehiclesPage, updatePlanetsPage } from '../actions/sw.action';
+updateCurrentVehicle, resetCurrentVehicle, updateCharactersPage, updateSpeciesPage, 
+updateStarshipsPage, updateVehiclesPage, updatePlanetsPage, resetRelatedFilms, addRelatedFilms, resetRelatedStarships, addRelatedStarships, resetRelatedVehicles, addRelatedVehicles } from '../actions/sw.action';
 import { initialState } from '../sw.store';
+import { state } from '@angular/animations';
 
 
 
@@ -36,5 +38,11 @@ export const swReducer = createReducer(
   on(updateStarshipsPage, (state, { page }) => ({...state, starshipsPage: page})),
   on(updateVehiclesPage, (state, { page }) => ({...state, vehiclesPage: page})),
   on(updatePlanetsPage, (state, { page }) => ({...state, planetsPage: page})),
+  on(resetRelatedFilms, (state) => ({...state, relatedFilms: []})),
+  on(addRelatedFilms, (state, { films }) => ({...state, relatedFilms: films })),
+  on(resetRelatedStarships, (state) => ({...state, relatedStarships: []})),
+  on(addRelatedStarships, (state, { starships }) => ({...state, relatedStarships: starships })),
+  on(resetRelatedVehicles, (state) => ({...state, relatedVehicles: [] })),
+  on(addRelatedVehicles, (state, { vehicles }) => ({...state, relatedVehicles: vehicles })),
 );
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable, distinctUntilChanged, filter, forkJoin, take } from 'rxjs';
+import { Observable, filter, forkJoin, take } from 'rxjs';
 import { ICharacters } from 'src/app/models/characters.interfaces';
 import { IFilms } from 'src/app/models/films.interfaces';
 import { IPlanets } from 'src/app/models/planets.interfaces';
@@ -10,8 +10,8 @@ import { IStarships } from 'src/app/models/starships.interfaces';
 import { IVehicles } from 'src/app/models/vehicles.interfaces';
 import { CommonService } from 'src/app/services/common.service';
 import { SwapiService } from 'src/app/services/swapi.service';
-import { getCurrentCharacter, getCurrentPlanet, getCurrentSpecie, updateLoading } from 'src/app/store/actions/sw.action';
-import { IAppStore, getLoader, selectCharacterData, selectPlanetData, selectSpecieData } from 'src/app/store/sw.store';
+import { addRelatedFilms, addRelatedStarships, addRelatedVehicles, getCurrentCharacter, getCurrentPlanet, getCurrentSpecie, resetRelatedFilms, resetRelatedStarships, resetRelatedVehicles, updateLoading } from 'src/app/store/actions/sw.action';
+import { IAppStore, getLoader, selectCharacterData, selectPlanetData, selectRelatedFilms, selectRelatedStarships, selectRelatedVehicle, selectSpecieData } from 'src/app/store/sw.store';
 
 @Component({
   selector: 'app-character-details-page',
@@ -30,9 +30,9 @@ export class CharacterDetailsPageComponent implements OnInit {
   planet$?: Observable<IPlanets>;
   specie$?: Observable<ISpecies>;
 
-  relatedFilms: IFilms[] = [];
-  relatedStarships: IStarships[] = [];
-  relatedVehicles: IVehicles[] = [];
+  relatedFilms$?: Observable<IFilms[]>;
+  relatedStarships$?: Observable<IStarships[]>;
+  relatedVehicles$?: Observable<IVehicles[]>;
 
   constructor(
     private store: Store<{sw: IAppStore}>, 
@@ -45,6 +45,7 @@ export class CharacterDetailsPageComponent implements OnInit {
 
   ngOnInit(): void { 
     this.init();
+    this.resetRelatedData();
 
     this.data$?.pipe(filter(x => x.name !== undefined)).subscribe((character: ICharacters) => {
       if(character) {
@@ -82,8 +83,8 @@ export class CharacterDetailsPageComponent implements OnInit {
       const id = this.swapiService.getId(x);
       return this.commonService.getCurrentFilm(`films/${id}`);
     });
-    forkJoin(films).pipe(distinctUntilChanged()).subscribe(result => {
-      this.relatedFilms = result;
+    forkJoin(films).subscribe(result => {
+        this.store.dispatch(addRelatedFilms(result));
     });
   }
 
@@ -93,7 +94,7 @@ export class CharacterDetailsPageComponent implements OnInit {
       return this.commonService.getCurrentStarship(`starships/${id}`);
     });
     forkJoin(starships).subscribe(result => {
-      this.relatedStarships = result;
+      this.store.dispatch(addRelatedStarships(result));
     });
   }
 
@@ -103,12 +104,18 @@ export class CharacterDetailsPageComponent implements OnInit {
       return this.commonService.getCurrentVehicle(`vehicles/${id}`);
     });
     forkJoin(vehicles).subscribe(result => {
-      this.relatedVehicles = result;
+      this.store.dispatch(addRelatedVehicles(result));
     });
   }
 
   getId(x: string): string {
     return this.swapiService.getId(x);
+  }
+
+  resetRelatedData(): void {
+    this.store.dispatch(resetRelatedFilms());
+    this.store.dispatch(resetRelatedStarships());
+    this.store.dispatch(resetRelatedVehicles());
   }
 
   init(): void {
@@ -121,6 +128,9 @@ export class CharacterDetailsPageComponent implements OnInit {
     this.planet$ = this.store.select(selectPlanetData);
     this.specie$ = this.store.select(selectSpecieData);
     this.loader$ = this.store.select(getLoader);
+    this.relatedFilms$ = this.store.select(selectRelatedFilms);
+    this.relatedStarships$ = this.store.select(selectRelatedStarships);
+    this.relatedVehicles$ = this.store.select(selectRelatedVehicle);
   }
 }
 

@@ -45,7 +45,13 @@ export enum SwTypes {
     UPDATE_STARSHIPS_PAGE = '[STARSHIPS] Update Starships Page',
     UPDATE_VEHICLES_PAGE = '[VEHICLES] Update Vehicles Page',
     UPDATE_PLANETS_PAGE = '[PLANETS] Update Planets Page',
-    
+    // related data
+    RESET_RELATED_FILMS = '[FILMS] Reset Related Films',
+    ADD_RELATED_FILMS = '[FILMS] Add Related Films',
+    RESET_RELATED_STARSHIPS = '[STARSHIPS] Reset Related Starships',
+    ADD_RELATED_STARSHIPS = '[STARSHIPS] Add Related Starships',
+    RESET_RELATED_VEHICLES = '[VEHICLES] Reset Related Vehicles',
+    ADD_RELATED_VEHICLES = '[VEHICLES] Add Related Vehicles',
 }
 
 export const updateLoading = createAction(SwTypes.UPDATE_LOADING, (loading: boolean) => ({ loading }));
@@ -129,3 +135,10 @@ export const updateSpeciesPage = createAction(SwTypes.UPDATE_SPECIES_PAGE, (page
 export const updateStarshipsPage = createAction(SwTypes.UPDATE_STARSHIPS_PAGE, (page: number) => ({ page }));
 export const updateVehiclesPage = createAction(SwTypes.UPDATE_VEHICLES_PAGE, (page: number) => ({ page }));
 export const updatePlanetsPage = createAction(SwTypes.UPDATE_PLANETS_PAGE, (page: number) => ({ page }));
+
+export const resetRelatedFilms = createAction(SwTypes.RESET_RELATED_FILMS);
+export const addRelatedFilms = createAction(SwTypes.ADD_RELATED_FILMS, (films: IFilms[]) => ({ films }));
+export const resetRelatedStarships = createAction(SwTypes.RESET_RELATED_STARSHIPS);
+export const addRelatedStarships = createAction(SwTypes.ADD_RELATED_STARSHIPS, (starships: IStarships[]) => ({ starships }));
+export const resetRelatedVehicles = createAction(SwTypes.RESET_RELATED_VEHICLES);
+export const addRelatedVehicles = createAction(SwTypes.ADD_RELATED_VEHICLES, (vehicles: IVehicles[]) => ({ vehicles }));
