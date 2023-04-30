@@ -45,13 +45,18 @@ export enum SwTypes {
     UPDATE_STARSHIPS_PAGE = '[STARSHIPS] Update Starships Page',
     UPDATE_VEHICLES_PAGE = '[VEHICLES] Update Vehicles Page',
     UPDATE_PLANETS_PAGE = '[PLANETS] Update Planets Page',
-    // related data
-    RESET_RELATED_FILMS = '[FILMS] Reset Related Films',
-    ADD_RELATED_FILMS = '[FILMS] Add Related Films',
-    RESET_RELATED_STARSHIPS = '[STARSHIPS] Reset Related Starships',
-    ADD_RELATED_STARSHIPS = '[STARSHIPS] Add Related Starships',
-    RESET_RELATED_VEHICLES = '[VEHICLES] Reset Related Vehicles',
-    ADD_RELATED_VEHICLES = '[VEHICLES] Add Related Vehicles',
+    ADD_RELATED_FILMS = '[RELATED_FILMS] Add Related Films',
+    ADD_RELATED_STARSHIPS = '[RELATED_STARSHIPS] Add Related Starships',
+    ADD_RELATED_VEHICLES = '[RELATED_VEHICLES] Add Related Vehicles',
+    ADD_RELATED_CHARACTERS = '[RELATED_CHARACTERS] Add Related Characters',
+    ADD_RELATED_PLANETS = '[RELATED_PLANETS] Add Related Planets',
+    ADD_RELATED_SPECIES = '[RELATED_SPECIES] Add Related Species',
+    RESET_RELATED_FILMS = '[RELATED_FILMS] Reset Related Films',
+    RESET_RELATED_STARSHIPS = '[RELATED_STARSHIPS] Reset Related Starships',
+    RESET_RELATED_VEHICLES = '[RELATED_VEHICLES] Reset Related Vehicles',
+    RESET_RELATED_CHARACTERS = '[RELATED_CHARACTERS] Reset Related Characters',
+    RESET_RELATED_PLANETS = '[RELATED_PLANETS] Reset Related Planets',
+    RESET_RELATED_SPECIES = '[RELATED_SPECIES] Reset Related Species',
 }
 
 export const updateLoading = createAction(SwTypes.UPDATE_LOADING, (loading: boolean) => ({ loading }));
@@ -100,14 +105,14 @@ export const getCurrentPlanet = createAction(SwTypes.GET_CURRENT_PLANET, (uri: s
 export const updateCurrentPlanet = createAction(SwTypes.UPDATE_CURRENT_PLANET, 
 (planet: IPlanets) => ({ planet }));
 
-export const resetCurrentPlanet = createAction(SwTypes.RESET_CURRENT_PLANET);
+export const resetCurrentPlanet = createAction(SwTypes.RESET_CURRENT_PLANET,);
 
 export const getCurrentFilm = createAction(SwTypes.GET_CURRENT_FILM, (uri: string) => ({ uri }));
 
 export const updateCurrentFilm = createAction(SwTypes.UPDATE_CURRENT_FILM, 
 (film: IFilms) => ({ film }));
 
-export const resetCurrentFilm = createAction(SwTypes.RESET_CURRENT_FILM);
+export const resetCurrentFilm = createAction(SwTypes.RESET_CURRENT_FILM,);
 
 export const getCurrentSpecie = createAction(SwTypes.GET_CURRENT_SPECIE, (uri: string) => ({ uri }));
 
@@ -136,9 +141,15 @@ export const updateStarshipsPage = createAction(SwTypes.UPDATE_STARSHIPS_PAGE, (
 export const updateVehiclesPage = createAction(SwTypes.UPDATE_VEHICLES_PAGE, (page: number) => ({ page }));
 export const updatePlanetsPage = createAction(SwTypes.UPDATE_PLANETS_PAGE, (page: number) => ({ page }));
 
-export const resetRelatedFilms = createAction(SwTypes.RESET_RELATED_FILMS);
 export const addRelatedFilms = createAction(SwTypes.ADD_RELATED_FILMS, (films: IFilms[]) => ({ films }));
-export const resetRelatedStarships = createAction(SwTypes.RESET_RELATED_STARSHIPS);
+export const resetRelatedFilms = createAction(SwTypes.RESET_RELATED_FILMS);
 export const addRelatedStarships = createAction(SwTypes.ADD_RELATED_STARSHIPS, (starships: IStarships[]) => ({ starships }));
-export const resetRelatedVehicles = createAction(SwTypes.RESET_RELATED_VEHICLES);
+export const resetRelatedStarships = createAction(SwTypes.RESET_RELATED_STARSHIPS);
 export const addRelatedVehicles = createAction(SwTypes.ADD_RELATED_VEHICLES, (vehicles: IVehicles[]) => ({ vehicles }));
+export const resetRelatedVehicles = createAction(SwTypes.RESET_RELATED_VEHICLES);
+export const addRelatedCharacters = createAction(SwTypes.ADD_RELATED_CHARACTERS, (characters: ICharacters[]) => ({ characters }));
+export const resetRelatedCharacters = createAction(SwTypes.RESET_RELATED_CHARACTERS);
+export const addRelatedPlanets = createAction(SwTypes.ADD_RELATED_PLANETS, (planets: IPlanets[]) => ({ planets }));
+export const resetRelatedPlanets = createAction(SwTypes.RESET_RELATED_PLANETS);
+export const addRelatedSpecies = createAction(SwTypes.ADD_RELATED_SPECIES, (species: ISpecies[]) => ({ species }));
+export const resetRelatedSpecies = createAction(SwTypes.RESET_RELATED_SPECIES);

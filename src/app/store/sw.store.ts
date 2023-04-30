@@ -27,11 +27,11 @@ export interface IAppStore {
   vehiclesPage: number;
   planetsPage: number;
   relatedFilms: IFilms[];
-  relatedFilmsLoading: boolean;
   relatedStarships: IStarships[];
-  relatedStarshipsLoading: boolean;
   relatedVehicles: IVehicles[]; 
-  relatedVehiclesLoading: boolean;
+  relatedCharacters: ICharacters[];
+  relatedSpecies: ISpecies[],
+  relatedPlanets: IPlanets[],
 }
 
 export const initialState: IAppStore = { 
@@ -183,11 +183,11 @@ export const initialState: IAppStore = {
   vehiclesPage: 1,
   planetsPage: 1,
   relatedFilms: [],
-  relatedFilmsLoading: false,
   relatedStarships: [],
-  relatedStarshipsLoading: false,
   relatedVehicles: [],
-  relatedVehiclesLoading: false,
+  relatedCharacters: [],
+  relatedSpecies: [],
+  relatedPlanets: [],
 };
 
 export const getState = (store: Store<IAppStore>): IAppStore => { 
@@ -226,3 +226,6 @@ export const getPlanetsPage = createSelector(swState, (state: IAppStore) => stat
 export const selectRelatedFilms = createSelector(swState, (state: IAppStore) => state.relatedFilms); 
 export const selectRelatedStarships = createSelector(swState, (state: IAppStore) => state.relatedStarships); 
 export const selectRelatedVehicle = createSelector(swState, (state: IAppStore) => state.relatedVehicles);
+export const selectRelatedCharacters = createSelector(swState, (state: IAppStore) => state.relatedCharacters);
+export const selectRelatedPlanets = createSelector(swState, (state: IAppStore) => state.relatedPlanets);
+export const selectRelatedSpecies = createSelector(swState, (state: IAppStore) => state.relatedSpecies);

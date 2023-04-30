@@ -25,6 +25,8 @@ import { FilmDetailsPageComponent } from './pages/film-details-page/film-details
 import { SpecieDetailsPageComponent } from './pages/specie-details-page/specie-details-page.component';
 import { StarshipDetailsPageComponent } from './pages/starship-details-page/starship-details-page.component';
 import { VehicleDetailsPageComponent } from './pages/vehicle-details-page/vehicle-details-page.component';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,7 @@ import { VehicleDetailsPageComponent } from './pages/vehicle-details-page/vehicl
     AppRoutingModule,
     StoreModule.forRoot({sw: swReducer}),
     EffectsModule.forRoot([SwEffects]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   providers: [],
   bootstrap: [AppComponent]

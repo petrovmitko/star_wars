@@ -15,6 +15,25 @@
                 <p><span class="prop-info">Eye Color(s):</span> {{ (data$ | async)?.eye_colors }}</p>
             </div>
         </div>
-        <div class="main-info-releted-data"></div>
+    </div>
+    <div class="related-data">
+        <div *ngIf="(relatedFilms$ | async)?.length" class="related-data-card">
+            <div class="title">Related Films</div>
+            <ul>
+                <li *ngFor="let item of (relatedFilms$ | async)">
+                    <img class="rel-card-img" [src]="'/assets/films/' + getId(item.url) + '.jpg'" alt="">
+                    <p>{{item.title}}</p>
+                </li>
+            </ul>
+        </div>
+        <div *ngIf="(relatedCharacters$ | async)?.length" class="related-data-card">
+            <div class="title">Related Characters</div>
+            <ul>
+                <li *ngFor="let item of (relatedCharacters$ | async)">
+                    <img class="rel-card-img" [src]="'/assets/characters/' + getId(item.url) + '.jpg'" alt="">
+                    <p>{{item.name}}</p>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>

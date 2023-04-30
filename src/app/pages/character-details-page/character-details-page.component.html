@@ -21,7 +21,6 @@
                 </p>
             </div>
         </div>
-        <div class="main-info-releted-data"></div>
     </div>
     <div class="related-data">
         <div *ngIf="(relatedFilms$ | async)?.length" class="related-data-card">
@@ -33,7 +32,7 @@
                 </li>
             </ul>
         </div>
-        <div *ngIf="(relatedStarships$ | async)" class="related-data-card">
+        <div *ngIf="(relatedStarships$ | async)?.length" class="related-data-card">
             <div class="title">Related Starships</div>
             <ul>
                 <li *ngFor="let item of (relatedStarships$ | async)">
@@ -42,7 +41,7 @@
                 </li>
             </ul>
         </div>
-        <div *ngIf="(relatedVehicles$ | async)" class="related-data-card">
+        <div *ngIf="(relatedVehicles$ | async)?.length" class="related-data-card">
             <div class="title">Related Vehicles</div>
             <ul>
                 <li *ngFor="let item of (relatedVehicles$ | async)">

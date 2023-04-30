@@ -118,7 +118,7 @@ export class SwEffects {
     ofType(SwTypes.GET_CURRENT_CHARACTER),
     switchMap(({uri}) => this.commonService.getCurrentCharacter(uri)
       .pipe(
-        mergeMap((character) => {
+        switchMap((character) => {
             return [
               resetCurrentCharacter(),
               updateCurrentCharacter(character),

@@ -11,6 +11,52 @@
                 <p><span class="prop-info justidfied">Opening Crawl:</span> {{ (data$ | async)?.opening_crawl }}</p>
             </div>
         </div>
-        <div class="main-info-releted-data"></div>
+    </div>
+    <div class="related-data">
+        <div *ngIf="(relatedCharacters$ | async)?.length" class="related-data-card">
+            <div class="title">Related Characters</div>
+            <ul>
+                <li *ngFor="let item of (relatedCharacters$ | async)">
+                    <img class="rel-card-img" [src]="'/assets/characters/' + getId(item.url) + '.jpg'" alt="">
+                    <p>{{item.name}}</p>
+                </li>
+            </ul>
+        </div>
+        <div *ngIf="(relatedPlanets$ | async)?.length" class="related-data-card">
+            <div class="title">Related Planets</div>
+            <ul>
+                <li *ngFor="let item of (relatedPlanets$ | async)">
+                    <img class="rel-card-img" [src]="'/assets/planets/' + getId(item.url) + '.jpg'" alt="">
+                    <p>{{item.name}}</p>
+                </li>
+            </ul>
+        </div>
+        <div *ngIf="(relatedVehicles$ | async)?.length" class="related-data-card">
+            <div class="title">Related Vehicles</div>
+            <ul>
+                <li *ngFor="let item of (relatedVehicles$ | async)">
+                    <img class="rel-card-img" [src]="'/assets/vehicles/' + getId(item.url) + '.jpg'" alt="">
+                    <p>{{item.name}}</p>
+                </li>
+            </ul>
+        </div>
+        <div *ngIf="(relatedStarships$ | async)?.length" class="related-data-card">
+            <div class="title">Related Starships</div>
+            <ul>
+                <li *ngFor="let item of (relatedStarships$ | async)">
+                    <img class="rel-card-img" [src]="'/assets/starships/' + getId(item.url) + '.jpg'" alt="">
+                    <p>{{item.name}}</p>
+                </li>
+            </ul>
+        </div>
+        <div *ngIf="(relatedSpecies$ | async)?.length" class="related-data-card">
+            <div class="title">Related Species</div>
+            <ul>
+                <li *ngFor="let item of (relatedSpecies$ | async)">
+                    <img class="rel-card-img" [src]="'/assets/species/' + getId(item.url) + '.jpg'" alt="">
+                    <p>{{item.name}}</p>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>

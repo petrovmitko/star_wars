@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable, filter, forkJoin, take } from 'rxjs';
+import { Observable, distinctUntilKeyChanged, filter, forkJoin, take } from 'rxjs';
 import { ICharacters } from 'src/app/models/characters.interfaces';
 import { IFilms } from 'src/app/models/films.interfaces';
 import { IPlanets } from 'src/app/models/planets.interfaces';
@@ -44,26 +44,30 @@ export class CharacterDetailsPageComponent implements OnInit {
   }
 
   ngOnInit(): void { 
-    this.init();
     this.resetRelatedData();
+    this.init();
 
-    this.data$?.pipe(filter(x => x.name !== undefined)).subscribe((character: ICharacters) => {
-      if(character) {
-        const planetUri = this.swapiService.getId(character.homeworld);
-        this.store.dispatch(getCurrentPlanet(`planets/${planetUri}`));
-        const specieUri = character.species.length > 0 ? this.swapiService.getId(character.species[0]) : 1;
-        this.store.dispatch(getCurrentSpecie(`species/${specieUri}`));
-        if(character.films.length) {
-          this.getRelatedFilms(character.films);
-        }
-        if(character.starships.length) {
-          this.getRelatedStarships(character.starships);
-        }
-        if(character.vehicles.length) {
-          this.getRelatedVehicles(character.vehicles);
-        }
-      }
+    const id = this.router.url.split('/')[2];
+    this.data$?.pipe(filter(x => this.swapiService.getId(x.url) === id))
+    .subscribe((character: ICharacters) => {
+      this.getRelData(character);
     });
+  }
+
+  getRelData(character: ICharacters): void {
+    const planetUri = this.swapiService.getId(character.homeworld);
+    const specieUri = character.species.length > 0 ? this.swapiService.getId(character.species[0]) : 1;
+    this.store.dispatch(getCurrentPlanet(`planets/${planetUri}`));
+    this.store.dispatch(getCurrentSpecie(`species/${specieUri}`));
+    if(character.films.length) {
+      this.getRelatedFilms(character.films);
+    }
+    if(character.starships.length) {
+      this.getRelatedStarships(character.starships);
+    }
+    if(character.vehicles.length) {
+      this.getRelatedVehicles(character.vehicles);
+    }
   }
 
   visitPlanet(): void {
