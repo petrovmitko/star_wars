@@ -30,8 +30,14 @@ export interface IAppStore {
   relatedStarships: IStarships[];
   relatedVehicles: IVehicles[]; 
   relatedCharacters: ICharacters[];
-  relatedSpecies: ISpecies[],
-  relatedPlanets: IPlanets[],
+  relatedSpecies: ISpecies[];
+  relatedPlanets: IPlanets[];
+  relatedFilmsLoading: boolean;
+  relatedCharactersLoading: boolean;
+  relatedPlanetsLoading: boolean;
+  relatedSpeciesLoading: boolean;
+  relatedStarshipsLoading: boolean;
+  relatedVehiclesLoading: boolean;
 }
 
 export const initialState: IAppStore = { 
@@ -188,6 +194,12 @@ export const initialState: IAppStore = {
   relatedCharacters: [],
   relatedSpecies: [],
   relatedPlanets: [],
+  relatedFilmsLoading: false,
+  relatedCharactersLoading: false,
+  relatedPlanetsLoading: false,
+  relatedSpeciesLoading: false,
+  relatedStarshipsLoading: false,
+  relatedVehiclesLoading: false,
 };
 
 export const getState = (store: Store<IAppStore>): IAppStore => { 
@@ -229,3 +241,10 @@ export const selectRelatedVehicle = createSelector(swState, (state: IAppStore) =
 export const selectRelatedCharacters = createSelector(swState, (state: IAppStore) => state.relatedCharacters);
 export const selectRelatedPlanets = createSelector(swState, (state: IAppStore) => state.relatedPlanets);
 export const selectRelatedSpecies = createSelector(swState, (state: IAppStore) => state.relatedSpecies);
+
+export const selectRelatedFilmsLoading = createSelector(swState, (state: IAppStore) => state.relatedFilmsLoading);
+export const selectrelatedCharactersLoading = createSelector(swState, (state: IAppStore) => state.relatedCharactersLoading);
+export const selectrelatedPlanetsLoading = createSelector(swState, (state: IAppStore) => state.relatedPlanetsLoading);
+export const selectrelatedSpeciesLoading = createSelector(swState, (state: IAppStore) => state.relatedSpeciesLoading);
+export const selectrelatedStarshipsLoading = createSelector(swState, (state: IAppStore) => state.relatedStarshipsLoading);
+export const selectrelatedVehiclesLoading = createSelector(swState, (state: IAppStore) => state.relatedVehiclesLoading);

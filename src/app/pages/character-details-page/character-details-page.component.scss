@@ -68,8 +68,10 @@
         &-card {
             width: 30%;
             margin: 0 8px;
+            min-height: 300px;
             backdrop-filter: blur(2px);
             margin-bottom: 20px;
+            position: relative;
             .title {
                 color: $white;
                 font-family: $karla;

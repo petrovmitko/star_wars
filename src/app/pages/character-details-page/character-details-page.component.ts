@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable, distinctUntilKeyChanged, filter, forkJoin, take } from 'rxjs';
+import { Observable, filter, forkJoin, take } from 'rxjs';
 import { ICharacters } from 'src/app/models/characters.interfaces';
 import { IFilms } from 'src/app/models/films.interfaces';
 import { IPlanets } from 'src/app/models/planets.interfaces';
@@ -10,8 +10,8 @@ import { IStarships } from 'src/app/models/starships.interfaces';
 import { IVehicles } from 'src/app/models/vehicles.interfaces';
 import { CommonService } from 'src/app/services/common.service';
 import { SwapiService } from 'src/app/services/swapi.service';
-import { addRelatedFilms, addRelatedStarships, addRelatedVehicles, getCurrentCharacter, getCurrentPlanet, getCurrentSpecie, resetRelatedFilms, resetRelatedStarships, resetRelatedVehicles, updateLoading } from 'src/app/store/actions/sw.action';
-import { IAppStore, getLoader, selectCharacterData, selectPlanetData, selectRelatedFilms, selectRelatedStarships, selectRelatedVehicle, selectSpecieData } from 'src/app/store/sw.store';
+import { addRelatedFilms, addRelatedStarships, addRelatedVehicles, getCurrentCharacter, getCurrentPlanet, getCurrentSpecie, resetRelatedFilms, resetRelatedStarships, resetRelatedVehicles, updateLoading, updateRelatedFilmsLoading, updateRelatedStarshipsLoading, updateRelatedVehiclesLoading } from 'src/app/store/actions/sw.action';
+import { IAppStore, getLoader, selectCharacterData, selectPlanetData, selectRelatedFilms, selectRelatedFilmsLoading, selectRelatedStarships, selectRelatedVehicle, selectSpecieData, selectrelatedStarshipsLoading, selectrelatedVehiclesLoading } from 'src/app/store/sw.store';
 
 @Component({
   selector: 'app-character-details-page',
@@ -33,6 +33,10 @@ export class CharacterDetailsPageComponent implements OnInit {
   relatedFilms$?: Observable<IFilms[]>;
   relatedStarships$?: Observable<IStarships[]>;
   relatedVehicles$?: Observable<IVehicles[]>;
+
+  relatedFilmsLoading$?: Observable<boolean>;
+  relatedStarshipsLoading$?: Observable<boolean>;
+  relatedVehiclesLoading$?: Observable<boolean>;
 
   constructor(
     private store: Store<{sw: IAppStore}>, 
@@ -60,12 +64,15 @@ export class CharacterDetailsPageComponent implements OnInit {
     this.store.dispatch(getCurrentPlanet(`planets/${planetUri}`));
     this.store.dispatch(getCurrentSpecie(`species/${specieUri}`));
     if(character.films.length) {
+      this.store.dispatch(updateRelatedFilmsLoading(true));
       this.getRelatedFilms(character.films);
     }
     if(character.starships.length) {
+      this.store.dispatch(updateRelatedStarshipsLoading(true));
       this.getRelatedStarships(character.starships);
     }
     if(character.vehicles.length) {
+      this.store.dispatch(updateRelatedVehiclesLoading(true));
       this.getRelatedVehicles(character.vehicles);
     }
   }
@@ -93,7 +100,8 @@ export class CharacterDetailsPageComponent implements OnInit {
       return this.commonService.getCurrentFilm(`films/${id}`);
     });
     forkJoin(films).subscribe(result => {
-        this.store.dispatch(addRelatedFilms(result));
+      this.store.dispatch(updateRelatedFilmsLoading(false));
+      this.store.dispatch(addRelatedFilms(result));
     });
   }
 
@@ -103,6 +111,7 @@ export class CharacterDetailsPageComponent implements OnInit {
       return this.commonService.getCurrentStarship(`starships/${id}`);
     });
     forkJoin(starships).subscribe(result => {
+      this.store.dispatch(updateRelatedStarshipsLoading(false));
       this.store.dispatch(addRelatedStarships(result));
     });
   }
@@ -113,6 +122,7 @@ export class CharacterDetailsPageComponent implements OnInit {
       return this.commonService.getCurrentVehicle(`vehicles/${id}`);
     });
     forkJoin(vehicles).subscribe(result => {
+      this.store.dispatch(updateRelatedVehiclesLoading(false));
       this.store.dispatch(addRelatedVehicles(result));
     });
   }
@@ -140,6 +150,10 @@ export class CharacterDetailsPageComponent implements OnInit {
     this.relatedFilms$ = this.store.select(selectRelatedFilms);
     this.relatedStarships$ = this.store.select(selectRelatedStarships);
     this.relatedVehicles$ = this.store.select(selectRelatedVehicle);
+
+    this.relatedFilmsLoading$ = this.store.select(selectRelatedFilmsLoading);
+    this.relatedStarshipsLoading$ = this.store.select(selectrelatedStarshipsLoading);
+    this.relatedVehiclesLoading$ = this.store.select(selectrelatedVehiclesLoading);
   }
 }
 

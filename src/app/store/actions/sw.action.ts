@@ -57,6 +57,13 @@ export enum SwTypes {
     RESET_RELATED_CHARACTERS = '[RELATED_CHARACTERS] Reset Related Characters',
     RESET_RELATED_PLANETS = '[RELATED_PLANETS] Reset Related Planets',
     RESET_RELATED_SPECIES = '[RELATED_SPECIES] Reset Related Species',
+    UPDATE_RELATED_FILMS_LOADING = '[RELATED_FILMS] Update Related Films Loading',
+
+    UPDATE_RELATED_CHARACTERS_LOADING = '[RELATED_CHARACTERS] Update Related Characters Loading',
+    UPDATE_RELATED_PLANETS_LOADING = '[RELATED_PLANETS] Update Related Planets Loading',
+    UPDATE_RELATED_SPECIES_LOADING = '[RELATED_SPECIES] Update Related Species Loading',
+    UPDATE_RELATED_STARSHIPS_LOADING = '[RELATED_STARSHIPS] Update Related Starships Loading',
+    UPDATE_RELATED_VEHICLES_LOADING = '[RELATED_VEHICLES] Update Related Vehicles Loading',
 }
 
 export const updateLoading = createAction(SwTypes.UPDATE_LOADING, (loading: boolean) => ({ loading }));
@@ -153,3 +160,10 @@ export const addRelatedPlanets = createAction(SwTypes.ADD_RELATED_PLANETS, (plan
 export const resetRelatedPlanets = createAction(SwTypes.RESET_RELATED_PLANETS);
 export const addRelatedSpecies = createAction(SwTypes.ADD_RELATED_SPECIES, (species: ISpecies[]) => ({ species }));
 export const resetRelatedSpecies = createAction(SwTypes.RESET_RELATED_SPECIES);
+
+export const updateRelatedFilmsLoading = createAction(SwTypes.UPDATE_RELATED_FILMS_LOADING, (loading: boolean) => ({ loading }));
+export const updateRelatedCharactersLoading = createAction(SwTypes.UPDATE_RELATED_CHARACTERS_LOADING, (loading: boolean) => ({ loading }));
+export const updateRelatedPlanetsLoading = createAction(SwTypes.UPDATE_RELATED_PLANETS_LOADING, (loading: boolean) => ({ loading }));
+export const updateRelatedSpeciesLoading = createAction(SwTypes.UPDATE_RELATED_SPECIES_LOADING, (loading: boolean) => ({ loading }));
+export const updateRelatedStarshipsLoading = createAction(SwTypes.UPDATE_RELATED_STARSHIPS_LOADING, (loading: boolean) => ({ loading }));
+export const updateRelatedVehiclesLoading = createAction(SwTypes.UPDATE_RELATED_VEHICLES_LOADING, (loading: boolean) => ({ loading }));

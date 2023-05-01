@@ -27,6 +27,7 @@ import { StarshipDetailsPageComponent } from './pages/starship-details-page/star
 import { VehicleDetailsPageComponent } from './pages/vehicle-details-page/vehicle-details-page.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { RelatedSectionLoaderComponent } from './components/related-section-loader/related-section-loader.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { environment } from '../environments/environment';
     SpecieDetailsPageComponent,
     StarshipDetailsPageComponent,
     VehicleDetailsPageComponent,
+    RelatedSectionLoaderComponent,
   ],
   imports: [
     BrowserModule,

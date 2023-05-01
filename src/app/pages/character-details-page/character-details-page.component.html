@@ -16,15 +16,16 @@
                     <span class="homeworld-link" (click)="visitPlanet()">{{ ' ' + (planet$ | async)?.name}}</span>
                 </p>
                 <p> 
-                    <span class="prop-info">Species:</span>
+                    <span class="prop-info">Specie:</span>
                     <span class="homeworld-link" (click)="visitSpecie()">{{ ' ' + (specie$ | async)?.name}}</span>
                 </p>
             </div>
         </div>
     </div>
     <div class="related-data">
-        <div *ngIf="(relatedFilms$ | async)?.length" class="related-data-card">
+        <div class="related-data-card">
             <div class="title">Related Films</div>
+            <app-related-section-loader *ngIf="(relatedFilmsLoading$ | async)"></app-related-section-loader>
             <ul>
                 <li *ngFor="let item of (relatedFilms$ | async)" (click)="visitRelatedLink(item.url, 'films')">
                     <img class="rel-card-img" [src]="'/assets/films/' + getId(item.url) + '.jpg'" alt="">
@@ -32,8 +33,9 @@
                 </li>
             </ul>
         </div>
-        <div *ngIf="(relatedStarships$ | async)?.length" class="related-data-card">
+        <div class="related-data-card">
             <div class="title">Related Starships</div>
+            <app-related-section-loader *ngIf="(relatedStarshipsLoading$ | async)"></app-related-section-loader>
             <ul>
                 <li *ngFor="let item of (relatedStarships$ | async)" (click)="visitRelatedLink(item.url, 'starships')">
                     <img class="rel-card-img" [src]="'/assets/starships/' + getId(item.url) + '.jpg'" alt="">
@@ -41,8 +43,9 @@
                 </li>
             </ul>
         </div>
-        <div *ngIf="(relatedVehicles$ | async)?.length" class="related-data-card">
+        <div class="related-data-card">
             <div class="title">Related Vehicles</div>
+            <app-related-section-loader *ngIf="(relatedVehiclesLoading$ | async)"></app-related-section-loader>
             <ul>
                 <li *ngFor="let item of (relatedVehicles$ | async)" (click)="visitRelatedLink(item.url, 'vehicles')">
                     <img class="rel-card-img" [src]="'/assets/vehicles/' + getId(item.url) + '.jpg'" alt="">

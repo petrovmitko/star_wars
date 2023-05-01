@@ -7,8 +7,8 @@ import { IFilms } from 'src/app/models/films.interfaces';
 import { ISpecies } from 'src/app/models/species.interfaces';
 import { CommonService } from 'src/app/services/common.service';
 import { SwapiService } from 'src/app/services/swapi.service';
-import { updateLoading, getCurrentSpecie, resetRelatedFilms, resetRelatedCharacters, addRelatedFilms, addRelatedCharacters } from 'src/app/store/actions/sw.action';
-import { IAppStore, getLoader, selectRelatedCharacters, selectRelatedFilms, selectSpecieData } from 'src/app/store/sw.store';
+import { updateLoading, getCurrentSpecie, resetRelatedFilms, resetRelatedCharacters, addRelatedFilms, addRelatedCharacters, updateRelatedFilmsLoading, updateRelatedCharactersLoading } from 'src/app/store/actions/sw.action';
+import { IAppStore, getLoader, selectRelatedCharacters, selectRelatedFilms, selectRelatedFilmsLoading, selectSpecieData, selectrelatedCharactersLoading } from 'src/app/store/sw.store';
 
 @Component({
   selector: 'app-specie-details-page',
@@ -26,6 +26,9 @@ export class SpecieDetailsPageComponent implements OnInit {
 
   relatedFilms$?: Observable<IFilms[]>;
   relatedCharacters$?: Observable<ICharacters[]>;
+
+  relatedFilmsLoading$?: Observable<boolean>;
+  relatedCharactersLoading$?: Observable<boolean>;
   
   constructor(
     private store: Store<{sw: IAppStore}>, 
@@ -49,9 +52,11 @@ export class SpecieDetailsPageComponent implements OnInit {
 
   getRelData(specie: ISpecies): void {
     if(specie.films.length) {
+      this.store.dispatch(updateRelatedFilmsLoading(true));
       this.getRelatedFilms(specie.films);
     }
     if(specie.people.length) {
+      this.store.dispatch(updateRelatedCharactersLoading(true));
       this.getRelatedCharacters(specie.people);
     }
   }
@@ -62,6 +67,7 @@ export class SpecieDetailsPageComponent implements OnInit {
       return this.commonService.getCurrentFilm(`films/${id}`);
     });
     forkJoin(films).subscribe(result => {
+      this.store.dispatch(updateRelatedFilmsLoading(false));
         this.store.dispatch(addRelatedFilms(result));
     });
   }
@@ -72,12 +78,18 @@ export class SpecieDetailsPageComponent implements OnInit {
       return this.commonService.getCurrentCharacter(`people/${id}`);
     });
     forkJoin(characters).subscribe(result => {
+      this.store.dispatch(updateRelatedCharactersLoading(false));
       this.store.dispatch(addRelatedCharacters(result));
     });
   }
 
   getId(x: string): string {
     return this.swapiService.getId(x);
+  }
+
+  visitRelatedLink(url: string, section: string): void {
+    const id = this.swapiService.getId(url);
+    this.router.navigate([`../${section}/${id}`]);
   }
   
   resetRelatedData(): void {
@@ -96,6 +108,9 @@ export class SpecieDetailsPageComponent implements OnInit {
 
     this.relatedFilms$ = this.store.select(selectRelatedFilms);
     this.relatedCharacters$ = this.store.select(selectRelatedCharacters);
+
+    this.relatedFilmsLoading$ = this.store.select(selectRelatedFilmsLoading);
+    this.relatedCharactersLoading$ = this.store.select(selectrelatedCharactersLoading);
   }
 
 }

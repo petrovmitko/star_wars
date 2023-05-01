@@ -7,8 +7,8 @@ import { IFilms } from 'src/app/models/films.interfaces';
 import { IPlanets } from 'src/app/models/planets.interfaces';
 import { CommonService } from 'src/app/services/common.service';
 import { SwapiService } from 'src/app/services/swapi.service';
-import { addRelatedCharacters, addRelatedFilms, getCurrentPlanet, resetRelatedCharacters, resetRelatedFilms, updateLoading } from 'src/app/store/actions/sw.action';
-import { IAppStore, getLoader, selectPlanetData, selectRelatedCharacters, selectRelatedFilms } from 'src/app/store/sw.store';
+import { addRelatedCharacters, addRelatedFilms, getCurrentPlanet, resetRelatedCharacters, resetRelatedFilms, updateLoading, updateRelatedCharactersLoading, updateRelatedFilmsLoading } from 'src/app/store/actions/sw.action';
+import { IAppStore, getLoader, selectPlanetData, selectRelatedCharacters, selectRelatedFilms, selectRelatedFilmsLoading, selectrelatedCharactersLoading } from 'src/app/store/sw.store';
 
 @Component({
   selector: 'app-planet-details-page',
@@ -26,6 +26,9 @@ export class PlanetDetailsPageComponent implements OnInit {
 
   relatedFilms$?: Observable<IFilms[]>;
   residents$?: Observable<ICharacters[]>;
+
+  relatedFilmsLoading$?: Observable<boolean>;
+  residentsLoading$?: Observable<boolean>;
 
   constructor(
     private store: Store<{sw: IAppStore}>, 
@@ -49,9 +52,11 @@ export class PlanetDetailsPageComponent implements OnInit {
   
   getRelData(planet: IPlanets): void {
     if(planet.films.length) {
+      this.store.dispatch(updateRelatedFilmsLoading(true));
       this.getRelatedFilms(planet.films);
     }
     if(planet.residents.length) {
+      this.store.dispatch(updateRelatedCharactersLoading(true));
       this.getRelatedCharacters(planet.residents);
     }
   }
@@ -62,7 +67,8 @@ export class PlanetDetailsPageComponent implements OnInit {
       return this.commonService.getCurrentFilm(`films/${id}`);
     });
     forkJoin(films).subscribe(result => {
-        this.store.dispatch(addRelatedFilms(result));
+      this.store.dispatch(updateRelatedFilmsLoading(false));
+      this.store.dispatch(addRelatedFilms(result));
     });
   }
 
@@ -72,8 +78,14 @@ export class PlanetDetailsPageComponent implements OnInit {
       return this.commonService.getCurrentCharacter(`people/${id}`);
     });
     forkJoin(residents).subscribe(result => {
+      this.store.dispatch(updateRelatedCharactersLoading(false));
       this.store.dispatch(addRelatedCharacters(result));
     });
+  }
+  
+  visitRelatedLink(url: string, section: string): void {
+    const id = this.swapiService.getId(url);
+    this.router.navigate([`../${section}/${id}`]);
   }
 
   getId(x: string): string {
@@ -96,5 +108,8 @@ export class PlanetDetailsPageComponent implements OnInit {
 
     this.relatedFilms$ = this.store.select(selectRelatedFilms);
     this.residents$ = this.store.select(selectRelatedCharacters);
+
+    this.relatedFilmsLoading$ = this.store.select(selectRelatedFilmsLoading);
+    this.residentsLoading$ = this.store.select(selectrelatedCharactersLoading);
   }
 }

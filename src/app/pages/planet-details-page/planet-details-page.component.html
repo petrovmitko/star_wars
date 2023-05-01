@@ -17,19 +17,21 @@
         </div>
     </div>
     <div class="related-data">
-        <div *ngIf="(relatedFilms$ | async)?.length" class="related-data-card">
+        <div class="related-data-card">
             <div class="title">Related Films</div>
+            <app-related-section-loader *ngIf="(relatedFilmsLoading$ | async)"></app-related-section-loader>
             <ul>
-                <li *ngFor="let item of (relatedFilms$ | async)">
+                <li *ngFor="let item of (relatedFilms$ | async)" (click)="visitRelatedLink(item.url, 'films')">
                     <img class="rel-card-img" [src]="'/assets/films/' + getId(item.url) + '.jpg'" alt="">
                     <p>{{item.title}}</p>
                 </li>
             </ul>
         </div>
-        <div *ngIf="(residents$ | async)?.length" class="related-data-card">
+        <div class="related-data-card">
             <div class="title">Residents</div>
+            <app-related-section-loader *ngIf="(residentsLoading$ | async)"></app-related-section-loader>
             <ul>
-                <li *ngFor="let item of (residents$ | async)">
+                <li *ngFor="let item of (residents$ | async)" (click)="visitRelatedLink(item.url, 'characters')">
                     <img class="rel-card-img" [src]="'/assets/characters/' + getId(item.url) + '.jpg'" alt="">
                     <p>{{item.name}}</p>
                 </li>

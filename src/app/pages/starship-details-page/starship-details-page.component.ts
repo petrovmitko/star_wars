@@ -7,8 +7,8 @@ import { IFilms } from 'src/app/models/films.interfaces';
 import { IStarships } from 'src/app/models/starships.interfaces';
 import { CommonService } from 'src/app/services/common.service';
 import { SwapiService } from 'src/app/services/swapi.service';
-import { addRelatedCharacters, addRelatedFilms, getCurrentStarship, resetRelatedCharacters, resetRelatedFilms, updateLoading } from 'src/app/store/actions/sw.action';
-import { IAppStore, getLoader, selectRelatedCharacters, selectRelatedFilms, selectStarshipData } from 'src/app/store/sw.store';
+import { addRelatedCharacters, addRelatedFilms, getCurrentStarship, resetRelatedCharacters, resetRelatedFilms, updateLoading, updateRelatedCharactersLoading, updateRelatedFilmsLoading } from 'src/app/store/actions/sw.action';
+import { IAppStore, getLoader, selectRelatedCharacters, selectRelatedFilms, selectRelatedFilmsLoading, selectStarshipData, selectrelatedCharactersLoading } from 'src/app/store/sw.store';
 
 @Component({
   selector: 'app-starship-details-page',
@@ -26,6 +26,9 @@ export class StarshipDetailsPageComponent implements OnInit {
   
   relatedFilms$?: Observable<IFilms[]>;
   relatedCharacters$?: Observable<ICharacters[]>;
+
+  relatedFilmsLoading$?: Observable<boolean>;
+  relatedCharactersLoading$?: Observable<boolean>;
 
   constructor(
   private store: Store<{sw: IAppStore}>, 
@@ -47,9 +50,11 @@ export class StarshipDetailsPageComponent implements OnInit {
 
   getRelData(starship: IStarships): void {
     if(starship.films.length) {
+      this.store.dispatch(updateRelatedFilmsLoading(true));
       this.getRelatedFilms(starship.films);
     }
     if(starship.pilots.length) {
+      this.store.dispatch(updateRelatedCharactersLoading(true));
       this.getRelatedCharacters(starship.pilots);
     }
   }
@@ -60,6 +65,7 @@ export class StarshipDetailsPageComponent implements OnInit {
       return this.commonService.getCurrentFilm(`films/${id}`);
     });
     forkJoin(films).subscribe(result => {
+      this.store.dispatch(updateRelatedFilmsLoading(false));
         this.store.dispatch(addRelatedFilms(result));
     });
   }
@@ -70,10 +76,16 @@ export class StarshipDetailsPageComponent implements OnInit {
       return this.commonService.getCurrentCharacter(`people/${id}`);
     });
     forkJoin(characters).subscribe(result => {
+      this.store.dispatch(updateRelatedCharactersLoading(false));
       this.store.dispatch(addRelatedCharacters(result));
     });
   }
 
+  visitRelatedLink(url: string, section: string): void {
+    const id = this.swapiService.getId(url);
+    this.router.navigate([`../${section}/${id}`]);
+  }
+  
   getId(x: string): string {
     return this.swapiService.getId(x);
   }
@@ -94,5 +106,8 @@ export class StarshipDetailsPageComponent implements OnInit {
 
     this.relatedFilms$ = this.store.select(selectRelatedFilms);
     this.relatedCharacters$ = this.store.select(selectRelatedCharacters);
+
+    this.relatedFilmsLoading$ = this.store.select(selectRelatedFilmsLoading);
+    this.relatedCharactersLoading$ = this.store.select(selectrelatedCharactersLoading);
   }
 }

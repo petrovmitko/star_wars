@@ -13,46 +13,51 @@
         </div>
     </div>
     <div class="related-data">
-        <div *ngIf="(relatedCharacters$ | async)?.length" class="related-data-card">
+        <div class="related-data-card">
             <div class="title">Related Characters</div>
+            <app-related-section-loader *ngIf="(relatedCharactersLoading$ | async)"></app-related-section-loader>
             <ul>
-                <li *ngFor="let item of (relatedCharacters$ | async)">
+                <li *ngFor="let item of (relatedCharacters$ | async)" (click)="visitRelatedLink(item.url, 'characters')">
                     <img class="rel-card-img" [src]="'/assets/characters/' + getId(item.url) + '.jpg'" alt="">
                     <p>{{item.name}}</p>
                 </li>
             </ul>
         </div>
-        <div *ngIf="(relatedPlanets$ | async)?.length" class="related-data-card">
+        <div class="related-data-card">
             <div class="title">Related Planets</div>
+            <app-related-section-loader *ngIf="(relatedPlanetsLoading$| async)"></app-related-section-loader>
             <ul>
-                <li *ngFor="let item of (relatedPlanets$ | async)">
+                <li *ngFor="let item of (relatedPlanets$ | async)" (click)="visitRelatedLink(item.url, 'planets')">
                     <img class="rel-card-img" [src]="'/assets/planets/' + getId(item.url) + '.jpg'" alt="">
                     <p>{{item.name}}</p>
                 </li>
             </ul>
         </div>
-        <div *ngIf="(relatedVehicles$ | async)?.length" class="related-data-card">
+        <div class="related-data-card">
             <div class="title">Related Vehicles</div>
+            <app-related-section-loader *ngIf="(relatedVehiclesLoading$ | async)"></app-related-section-loader>
             <ul>
-                <li *ngFor="let item of (relatedVehicles$ | async)">
+                <li *ngFor="let item of (relatedVehicles$ | async)" (click)="visitRelatedLink(item.url, 'vehicles')">
                     <img class="rel-card-img" [src]="'/assets/vehicles/' + getId(item.url) + '.jpg'" alt="">
                     <p>{{item.name}}</p>
                 </li>
             </ul>
         </div>
-        <div *ngIf="(relatedStarships$ | async)?.length" class="related-data-card">
+        <div class="related-data-card">
             <div class="title">Related Starships</div>
+            <app-related-section-loader *ngIf="(relatedStarshipsLoading$ | async)"></app-related-section-loader>
             <ul>
-                <li *ngFor="let item of (relatedStarships$ | async)">
+                <li *ngFor="let item of (relatedStarships$ | async)" (click)="visitRelatedLink(item.url, 'starships')">
                     <img class="rel-card-img" [src]="'/assets/starships/' + getId(item.url) + '.jpg'" alt="">
                     <p>{{item.name}}</p>
                 </li>
             </ul>
         </div>
-        <div *ngIf="(relatedSpecies$ | async)?.length" class="related-data-card">
+        <div class="related-data-card">
             <div class="title">Related Species</div>
+            <app-related-section-loader *ngIf="(relatedSpeciesLoading$| async)"></app-related-section-loader>
             <ul>
-                <li *ngFor="let item of (relatedSpecies$ | async)">
+                <li *ngFor="let item of (relatedSpecies$ | async)" (click)="visitRelatedLink(item.url, 'species')">
                     <img class="rel-card-img" [src]="'/assets/species/' + getId(item.url) + '.jpg'" alt="">
                     <p>{{item.name}}</p>
                 </li>

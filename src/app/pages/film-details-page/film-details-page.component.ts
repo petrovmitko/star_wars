@@ -10,8 +10,8 @@ import { IStarships } from 'src/app/models/starships.interfaces';
 import { IVehicles } from 'src/app/models/vehicles.interfaces';
 import { CommonService } from 'src/app/services/common.service';
 import { SwapiService } from 'src/app/services/swapi.service';
-import { addRelatedCharacters, addRelatedPlanets, addRelatedSpecies, addRelatedStarships, addRelatedVehicles, getCurrentFilm, resetRelatedCharacters, updateLoading } from 'src/app/store/actions/sw.action';
-import { IAppStore, getLoader, selectFilmData, selectRelatedCharacters, selectRelatedPlanets, selectRelatedSpecies, selectRelatedStarships, selectRelatedVehicle } from 'src/app/store/sw.store';
+import { addRelatedCharacters, addRelatedPlanets, addRelatedSpecies, addRelatedStarships, addRelatedVehicles, getCurrentFilm, resetRelatedCharacters, updateLoading, updateRelatedCharactersLoading, updateRelatedPlanetsLoading, updateRelatedSpeciesLoading, updateRelatedStarshipsLoading, updateRelatedVehiclesLoading } from 'src/app/store/actions/sw.action';
+import { IAppStore, getLoader, selectFilmData, selectRelatedCharacters, selectRelatedPlanets, selectRelatedSpecies, selectRelatedStarships, selectRelatedVehicle, selectrelatedCharactersLoading, selectrelatedPlanetsLoading, selectrelatedSpeciesLoading, selectrelatedStarshipsLoading, selectrelatedVehiclesLoading } from 'src/app/store/sw.store';
 
 @Component({
   selector: 'app-film-details-page',
@@ -32,6 +32,12 @@ export class FilmDetailsPageComponent implements OnInit {
   relatedSpecies$?: Observable<ISpecies[]>;
   relatedStarships$?: Observable<IStarships[]>;
   relatedVehicles$?: Observable<IVehicles[]>;
+
+  relatedCharactersLoading$?: Observable<boolean>;
+  relatedPlanetsLoading$?: Observable<boolean>;
+  relatedSpeciesLoading$?: Observable<boolean>;
+  relatedStarshipsLoading$?: Observable<boolean>;
+  relatedVehiclesLoading$?: Observable<boolean>;
 
   constructor(
     private store: Store<{sw: IAppStore}>, 
@@ -55,18 +61,23 @@ export class FilmDetailsPageComponent implements OnInit {
 
   getRelData(films: IFilms): void {
     if(films.characters.length) {
+      this.store.dispatch(updateRelatedCharactersLoading(true));
       this.getRelatedCharacters(films.characters);
     }
     if(films.planets.length) {
+      this.store.dispatch(updateRelatedPlanetsLoading(true));
       this.getRelatedPlanets(films.planets);
     }
     if(films.vehicles.length) {
+      this.store.dispatch(updateRelatedVehiclesLoading(true));
       this.getRelatedVehicles(films.vehicles);
     }
     if(films.starships.length) {
+      this.store.dispatch(updateRelatedStarshipsLoading(true));
       this.getRelatedStarships(films.starships);
     }
     if(films.species.length) {
+      this.store.dispatch(updateRelatedSpeciesLoading(true));
       this.getRelatedSpecies(films.species);
     }
   }
@@ -77,6 +88,7 @@ export class FilmDetailsPageComponent implements OnInit {
       return this.commonService.getCurrentCharacter(`people/${id}`);
     });
     forkJoin(characters).subscribe(result => {
+      this.store.dispatch(updateRelatedCharactersLoading(false));
       this.store.dispatch(addRelatedCharacters(result));
     });
   }
@@ -87,6 +99,7 @@ export class FilmDetailsPageComponent implements OnInit {
       return this.commonService.getCurrentPlanet(`planets/${id}`);
     });
     forkJoin(films).subscribe(result => {
+      this.store.dispatch(updateRelatedPlanetsLoading(false));
       this.store.dispatch(addRelatedPlanets(result));
     });
   }
@@ -97,6 +110,7 @@ export class FilmDetailsPageComponent implements OnInit {
       return this.commonService.getCurrentVehicle(`vehicles/${id}`);
     });
     forkJoin(vehicles).subscribe(result => {
+      this.store.dispatch(updateRelatedVehiclesLoading(false));
       this.store.dispatch(addRelatedVehicles(result));
     });
   }
@@ -107,6 +121,7 @@ export class FilmDetailsPageComponent implements OnInit {
       return this.commonService.getCurrentStarship(`starships/${id}`);
     });
     forkJoin(starships).subscribe(result => {
+      this.store.dispatch(updateRelatedStarshipsLoading(false));
       this.store.dispatch(addRelatedStarships(result));
     });
   }
@@ -117,8 +132,14 @@ export class FilmDetailsPageComponent implements OnInit {
       return this.commonService.getCurrentSpecie(`species/${id}`);
     });
     forkJoin(species).subscribe(result => {
+      this.store.dispatch(updateRelatedSpeciesLoading(false));
       this.store.dispatch(addRelatedSpecies(result));
     });
+  }
+
+  visitRelatedLink(url: string, section: string): void {
+    const id = this.swapiService.getId(url);
+    this.router.navigate([`../${section}/${id}`]);
   }
 
   getReleaseDate(x: string | undefined): string {
@@ -148,6 +169,12 @@ export class FilmDetailsPageComponent implements OnInit {
     this.relatedSpecies$ = this.store.select(selectRelatedSpecies);
     this.relatedStarships$ = this.store.select(selectRelatedStarships);
     this.relatedVehicles$ = this.store.select(selectRelatedVehicle);
+
+    this.relatedCharactersLoading$ = this.store.select(selectrelatedCharactersLoading);
+    this.relatedPlanetsLoading$ = this.store.select(selectrelatedPlanetsLoading);
+    this.relatedSpeciesLoading$ = this.store.select(selectrelatedSpeciesLoading);
+    this.relatedStarshipsLoading$ = this.store.select(selectrelatedStarshipsLoading);
+    this.relatedVehiclesLoading$ = this.store.select(selectrelatedVehiclesLoading);
   }
   
 }

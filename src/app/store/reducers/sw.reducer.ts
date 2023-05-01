@@ -6,7 +6,7 @@ updateCurrentPlanet, resetCurrentPlanet, updateCurrentFilm, resetCurrentFilm,
 updateCurrentSpecie, resetCurrentSpecie, updateCurrentStarship, resetCurrentStarship,
 updateCurrentVehicle, resetCurrentVehicle, updateCharactersPage, updateSpeciesPage, 
 updateStarshipsPage, updateVehiclesPage, updatePlanetsPage, resetRelatedFilms, addRelatedFilms, 
-resetRelatedStarships, addRelatedStarships, resetRelatedVehicles, addRelatedVehicles, resetRelatedCharacters, addRelatedCharacters, addRelatedPlanets, addRelatedSpecies, resetRelatedPlanets, resetRelatedSpecies } from '../actions/sw.action';
+resetRelatedStarships, addRelatedStarships, resetRelatedVehicles, addRelatedVehicles, resetRelatedCharacters, addRelatedCharacters, addRelatedPlanets, addRelatedSpecies, resetRelatedPlanets, resetRelatedSpecies, updateRelatedFilmsLoading, updateRelatedCharactersLoading, updateRelatedPlanetsLoading, updateRelatedSpeciesLoading, updateRelatedStarshipsLoading, updateRelatedVehiclesLoading } from '../actions/sw.action';
 import { initialState } from '../sw.store';
 
 
@@ -50,5 +50,11 @@ export const swReducer = createReducer(
   on(resetRelatedCharacters, (state) => ({...state, relatedCharacters: initialState.relatedCharacters})),
   on(resetRelatedPlanets, (state) => ({...state, relatedPlanets: initialState.relatedPlanets})),
   on(resetRelatedSpecies, (state) => ({...state, relatedSpecies: initialState.relatedSpecies})),
+  on(updateRelatedFilmsLoading, (state, { loading }) => ( {...state, relatedFilmsLoading: loading })),
+  on(updateRelatedCharactersLoading, (state, { loading }) => ( {...state, relatedCharactersLoading: loading })),
+  on(updateRelatedPlanetsLoading, (state, { loading }) => ( {...state, relatedPlanetsLoading: loading })),
+  on(updateRelatedSpeciesLoading, (state, { loading }) => ( {...state, relatedSpeciesLoading: loading })),
+  on(updateRelatedStarshipsLoading, (state, { loading }) => ( {...state, relatedStarshipsLoading: loading })),
+  on(updateRelatedVehiclesLoading, (state, { loading }) => ( {...state, relatedVehiclesLoading: loading })),
 );
 
