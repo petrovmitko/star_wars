@@ -26,7 +26,7 @@
         <div *ngIf="(relatedFilms$ | async)?.length" class="related-data-card">
             <div class="title">Related Films</div>
             <ul>
-                <li *ngFor="let item of (relatedFilms$ | async)">
+                <li *ngFor="let item of (relatedFilms$ | async)" (click)="visitRelatedLink(item.url, 'films')">
                     <img class="rel-card-img" [src]="'/assets/films/' + getId(item.url) + '.jpg'" alt="">
                     <p>{{item.title}}</p>
                 </li>
@@ -35,7 +35,7 @@
         <div *ngIf="(relatedStarships$ | async)?.length" class="related-data-card">
             <div class="title">Related Starships</div>
             <ul>
-                <li *ngFor="let item of (relatedStarships$ | async)">
+                <li *ngFor="let item of (relatedStarships$ | async)" (click)="visitRelatedLink(item.url, 'starships')">
                     <img class="rel-card-img" [src]="'/assets/starships/' + getId(item.url) + '.jpg'" alt="">
                     <p>{{item.name}}</p>
                 </li>
@@ -44,7 +44,7 @@
         <div *ngIf="(relatedVehicles$ | async)?.length" class="related-data-card">
             <div class="title">Related Vehicles</div>
             <ul>
-                <li *ngFor="let item of (relatedVehicles$ | async)">
+                <li *ngFor="let item of (relatedVehicles$ | async)" (click)="visitRelatedLink(item.url, 'vehicles')">
                     <img class="rel-card-img" [src]="'/assets/vehicles/' + getId(item.url) + '.jpg'" alt="">
                     <p>{{item.name}}</p>
                 </li>

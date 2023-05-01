@@ -82,6 +82,11 @@ export class CharacterDetailsPageComponent implements OnInit {
     });
   }
 
+  visitRelatedLink(url: string, section: string): void {
+    const id = this.swapiService.getId(url);
+    this.router.navigate([`../${section}/${id}`]);
+  }
+
   getRelatedFilms(filmArr: string[]): void {
     const films = filmArr.map(x => {
       const id = this.swapiService.getId(x);
