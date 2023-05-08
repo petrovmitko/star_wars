@@ -8,6 +8,11 @@
     margin-bottom: 40px;
     position: relative;
     overflow: hidden;
+    @media screen and (max-width: 1290px) {
+        width: 330px;
+        height: 200px;
+
+    }
     &:hover {
         border: 2px solid $white;
         cursor: pointer;

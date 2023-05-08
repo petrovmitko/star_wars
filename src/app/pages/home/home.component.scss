@@ -11,4 +11,10 @@
         margin: 0 auto;
         flex-wrap: wrap;
     }
+    @media screen and (max-width: 1440px) {
+        .app-content {
+            width: 100vw;
+        }
+        
+    }
 }

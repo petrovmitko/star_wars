@@ -10,6 +10,24 @@
           width: 600px;
           display: flex;
           justify-content: space-between;
+          @media screen and (max-width: 1290px) {
+            position: relative;
+            top: -5px;
+          }
+          @media screen and (max-width: 991px) {
+            width: 500px;
+          }
+          @media screen and (max-width: 800px) {
+            width: 400px;
+          }
+          @media screen and (max-width: 680px) {
+            width: 200px;
+            display: flex;
+            flex-wrap: wrap;
+          }
+           @media screen and (max-width: 535px) {
+                width: 80%;
+              }
           li {
               width: 40px;
               height: 40px;
@@ -27,6 +45,13 @@
                 box-shadow: 0 0 5px $magenta, 0 0 7px $magenta inset;
                 color: $magenta;
                 border: 1px solid $magenta;
+              }
+              @media screen and (max-width: 1290px) {
+                width: 24px;
+                height: 24px;
+              }
+              @media screen and (max-width: 680px) {
+                margin: 6px;
               }
           }
           .selected {
@@ -52,6 +77,13 @@
           transition: all 0.3s ease;
           position: relative;
           display: inline-block;
+          @media screen and (max-width: 1290px) {
+            width: 80px;
+            height: 24px;
+          }
+          @media screen and (max-width: 535px) {
+            display: none;
+          }
         }
         .neon{
           color: $turquoise;
@@ -64,6 +96,10 @@
           line-height: 40px;
           -webkit-perspective: 230px;
           perspective: 230px;
+          @media screen and (max-width: 1290px) {
+            width: 80px;
+            height: 24px;
+          }
         }
         .neon span {
           display: block;
@@ -79,6 +115,13 @@
           box-sizing: border-box;
           -webkit-transition: all .3s;
           transition: all .3s;
+          @media screen and (max-width: 1290px) {
+            width: 80px;
+            height: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
         }
         .neon span:nth-child(1) {
           box-shadow: 0 0 5px $turquoise, 0 0 5px $turquoise inset;
@@ -110,6 +153,25 @@
           -moz-transform: rotateX(-90deg);
           transform: rotateX(-90deg);
         }
+        @media screen and (max-width: 1290px) { 
+          .neon span:nth-child(1) {
+            box-shadow: 0 0 5px $turquoise, 0 0 5px $turquoise inset;
+            -webkit-transform: rotateX(90deg);
+            -moz-transform: rotateX(90deg);
+            transform: rotateX(90deg);
+            -webkit-transform-origin: 50% 50% -14px;
+            -moz-transform-origin: 50% 50% -14px;
+            transform-origin: 50% 50% -14px;
+          }
+          .neon span:nth-child(2) {
+            -webkit-transform: rotateX(0deg);
+            -moz-transform: rotateX(0deg);
+            transform: rotateX(0deg);
+            -webkit-transform-origin: 50% 50% -14px;
+            -moz-transform-origin: 50% 50% -14px;
+            transform-origin: 50% 50% -14px;
+          }
+        }
         
   }
   .content {
@@ -123,6 +185,14 @@
           justify-content: space-between;
           flex-wrap: wrap;
           padding: 40px 100px;
+          @media screen and (max-width: 1290px) {
+            display: flex;
+            padding: 40px;
+          }
+          @media screen and (max-width: 1290px) {
+            display: flex;
+            justify-content: space-around;
+          }
           .card {
               width: 16%;
               margin: 0 2%;
@@ -142,8 +212,9 @@
                   display: flex;
                   align-items: center;
                   justify-content: center;
-                  height: 40px;
+                  min-height: 60px;
                   background: $white;
+                  padding: 0 18px;
                   h3 {
                       font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
                       font-weight: 100;
