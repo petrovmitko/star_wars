@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "starwars-cbf47"
+  },
+  "targets": {
+    "starwars-cbf47": {
+      "hosting": {
+        "starwars-cbf47": [
+          "starwars-cbf47"
+        ]
+      }
+    }
+  }
+}
